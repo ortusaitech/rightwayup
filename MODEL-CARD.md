@@ -309,7 +309,8 @@ then weight-averaged with a rotation-corner fine-tune (0.2 : 0.8). Recipe: `RECI
 licence: 1.22 million photos (PASS, COCO, Open Images, CommonCatalog; Flickr-hosted, CC BY or public-domain-like
 terms) plus 14,669 DIODE scans, 3,749 MEVA CCTV frames and 3,579 ORTUS AI renders of Poly Haven assets. Nano used an
 earlier subset (705,075 training rows). Near-duplicates of benchmark photos were excluded, and there is no customer
-data. Per-image manifests: `manifests/training/` (per-row files in the Hugging Face repository); sources, licences
+data. Per-image manifests: `manifests/training/` (per-row files in the Hugging Face repository); our Blender renders:
+[ortusai/rightwayup-renders](https://huggingface.co/datasets/ortusai/rightwayup-renders) (CC BY 4.0); sources, licences
 and screening: `DATA-CARD.md`.
 
 **Backbone.** DINOv2 was pretrained by Meta on LVD-142M, curated from crawled web data; we use Meta's Apache-2.0

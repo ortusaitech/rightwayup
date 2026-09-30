@@ -1,6 +1,6 @@
 # Data card: RightWayUp 1.0 training and evaluation data
 
-**The training images are not redistributed.** This card, together with per-image manifests, traces every image to
+**The training images are not redistributed**, except our own Blender renders (below). This card, together with per-image manifests, traces every image to
 its source, with per-author credit where the licence requires it, and lets anyone rebuild the corpus from the
 original sources under their original terms. Removal requests: [`TAKEDOWN.md`](TAKEDOWN.md).
 Counts are those of the training runs of the released models, 30 Sep 2026.
@@ -99,9 +99,9 @@ its author's licence, as recorded at `checked_utc`. (Owner decision, 25 Sep 2026
 Row fields: `id, family, group, base_roll_cw, dhash, used_in_training, dataset, dataset_licence, dataset_licence_url,
 locator, attribution, label_authority` (+ `supervision` for hybrid rows); the release's manifests add `licence_class`,
 `derivation`, `replaces`, `replacement_reason` and `stored_sha256` (`manifests/training/README.md`). PASS geo-coordinates are deliberately not
-copied. The Blender renders of Poly Haven assets (ORTUS AI, CC0 assets) are identified by render file and hash;
-rebuilding them needs the published renders. If the renders are published under CC BY 4.0, that licence covers only
-ORTUS AI's own contribution; the underlying Poly Haven assets remain CC0. Evaluation-set definitions (IDs, seeds,
+copied. The Blender renders of Poly Haven assets are published as the dataset
+[ortusai/rightwayup-renders](https://huggingface.co/datasets/ortusai/rightwayup-renders) under CC BY 4.0, which covers ORTUS AI's renders; the underlying Poly Haven assets
+remain CC0. Each render row's locator gives its path and hash in that dataset. Evaluation-set definitions (IDs, seeds,
 angles) of the held-out sets are in `manifests/evaluation/`.
 
 ## Licence notes and disclosed soft spots

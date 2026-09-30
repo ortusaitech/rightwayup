@@ -14,7 +14,7 @@ re-score RightWayUp or any other model on identical inputs.
 | `clean-v1-frozen-views.jsonl` | 2,854 | The protected clean-v1 views in scoring order |
 
 - **Rebuilding:** `python -m rotlab.protected_eval dump --i-am-releasing` recreates the views from the frames. It uses fixed seeds, the fixed 4:3 crop, and simulated CCTV degradation on the "degraded" half. The applied angles must match the `*-views.jsonl` files.
-- **Renders:** the 791 Poly Haven render parents of the clean-v1 test are in `ortus-polyhaven-orientation-renders-v1-clean-v1-frozen.tar`, released with the renders dataset under CC BY 4.0. The source assets are Poly Haven, CC0.
+- **Renders:** the 791 Poly Haven render parents of the clean-v1 test are in the renders dataset [ortusai/rightwayup-renders](https://huggingface.co/datasets/ortusai/rightwayup-renders) under `evaluation/clean-v1-frozen/` (CC BY 4.0); `locator.render_file` is the path there. The source assets are Poly Haven, CC0.
 - **Blindness:** these sets were scored once, on frozen weights, on 24 Sep 2026 (`FREEZE-release-candidate-2026-09-24.md`). Once published they are no longer blind. Future RightWayUp versions will be judged on a new private protected set.
 - **Licences:**
   - MEVA: Kitware / IARPA, CC BY 4.0.

@@ -90,8 +90,8 @@ rotation-corner fine-tune (PICO-N70C): 0.2 × N70L + 0.8 × N70C (§8).
 
 ## 3. Training data
 
-The training images are not redistributed; per-image manifests identify every image (`manifests/training/`,
-`DATA-CARD.md`).
+The training images are not redistributed, except our own Blender renders ([ortusai/rightwayup-renders](https://huggingface.co/datasets/ortusai/rightwayup-renders), CC BY
+4.0); per-image manifests identify every image (`manifests/training/`, `DATA-CARD.md`).
 
 | Group | Families | Training rows used |
 |---|---|---|

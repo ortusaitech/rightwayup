@@ -120,10 +120,11 @@ Locator keys by dataset:
 
 ## Known limits (stated, not hidden)
 
-- **Poly Haven renders (3,586 rows) have no public URL.** They are ORTUS AI renders of CC0 Poly Haven assets and are not
-  published. The locator identifies the render by its file name and hash. For `gf_poly_direct` (120 rows) the original
-  render file is lost: training used a 139 × 83 px copy of the 24 Sep pack image (see `derivation`).
-  `SUMMARY.json` → `gaps.no_locator_url` counts these rows. No other gaps were found: every row has a dataset licence and
+- **Poly Haven renders (3,586 rows)** are ORTUS AI renders of CC0 Poly Haven assets, published as the dataset
+  [ortusai/rightwayup-renders](https://huggingface.co/datasets/ortusai/rightwayup-renders) (CC BY 4.0): `locator.render_file` is the path in it and `locator.render_sha256`
+  the file's hash. The rows carry no `url` field, so `SUMMARY.json` → `gaps.no_locator_url` still counts them. For
+  `gf_poly_direct` (120 rows) the original full-resolution render is lost; the dataset holds the 24 Sep pack image the
+  locator names, and training used a 139 × 83 px copy of it (see `derivation`). No other gaps were found: every row has a dataset licence and
   URL; every Flickr photo row has an author, a per-image licence and licence URL, and a source URL; and every non-PASS
   photo row has a licence check date.
 - **PASS licences come from the PASS release metadata**, not from today's Flickr page: `pass_metadata.csv` gives
