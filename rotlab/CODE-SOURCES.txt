@@ -1,0 +1,85 @@
+# rotlab/ provenance: SHA-256, file, origin. Files identical to the freeze scoring code (FROZEN.json): camp_aalborg.py, camp_analyze.py, camp_eval.py, camp_final.py, camp_incumbent.py, camp_newdata.py, camp_rlivit.py, camp_store.py, core.py, evaluate.py, prep_sources.py
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  __init__.py  pico-tree
+c36344f581b6432d03859016ea3a55b2457ef96eafc847098e758984999da33b  bench.py  release tooling (24 Sep 2026)
+0b65180bcdeeaf5d062757ecda2264f318848e493c528f1cbf25ae2ad84257a4  bench_report.py  release tooling (24 Sep 2026)
+f607d7ce8a6b7fdaf707f9917a8392a6d1ee039b3a4f94f159318d2340eb6d6c  build_from_manifest.py  release tooling (24 Sep 2026)
+84f39d6668485f871a4e6c708e9dbaebeaae448ddc5b9f89c7681d65d12e60d8  cal_fill.py  pico-tree
+94485b8fcd55bca65dca8f5b2832d71d87e27e6ff4b65b3cbae28259c02056eb  cal_onnx.py  lead-overlay
+e15b63a888da7e8db5894ca2e6ce6a5172391d385f34ff148e8a3cc24adee4f1  calib.py  release tooling (24 Sep 2026)
+94be50af2af07e6f21d48470648e7d63c5baf2fcf113ea4c68ae9d38f2026dc1  camp_aalborg.py  campaign
+53b5f127e5cd31a7d223a90df79cfb456f3f7778f561ddfda14ff364c7c8ad3f  camp_analyze.py  campaign
+4d6d18c81d4b227f93b2df3db90773182be20617a787f8dc927786c5c5409891  camp_eval.py  pico-tree
+a992bfdd1a1fb6b334bf0298b0725b42d00c0a9f56d1cca4c1619be56c9632ef  camp_final.py  lead-overlay (freeze scoring code)
+6ab3f4cb103f1be1fb7cc6699c79f36cc88caa229b810d42ed624e4ec2156e64  camp_fuse.py  pico-tree
+ebb5ccd2fa0ff6466493c4e38aaae08a85490cf1c02fbcbc058f0a5553c43db3  camp_h13.py  pico-tree
+f3ce2af33a458a45db6df2937684391f187853bb32535ce7bbbe8d110882e6d2  camp_h8.py  pico-tree
+6bc607275442e06c46dee3ed97412542af054d0ce8948fa36bf0458d17a1b644  camp_incumbent.py  campaign
+44355f49bb6ee8584e2fe05b61ef3e0135856ddc28ccc74abf0ce5e82267aa37  camp_newdata.py  campaign
+8857bbf3c867f5f5bc2f486843b064ef9cca211cfec3f57d9e92d4f67a28c840  camp_paired.py  pico-tree
+49457f4f5ddb85ca1788f886bb9f2a034657564df24f71d50e516bcb84c29eb8  camp_rlivit.py  campaign
+cf539b820f06fca66085c0110cb4e47d38ac6c55d5fa0294a544828f3d4cf981  camp_store.py  pico-tree
+dfaf34f88fe1f7f92b18b6e0244ad0ea2ea1e13764310c81d32a509d8e8db7fb  cascade.py  release tooling (24 Sep 2026)
+079fd7a8bd40bc8a09cdfdbbbd139dadf98a1b5c7cb56f10142de5c102049660  check_render.py  release tooling (24 Sep 2026)
+957e308ff82c768c499486b0a1a6db3f5f0b7bcf1f5d61c5fdd55cef39a8ccac  coco_expand.py  release tooling (24 Sep 2026)
+0f2499acba1e1f69785ae96dd41d605399f9f2a11c4ce9907b374c756666903b  competitors.py  release tooling (24 Sep 2026)
+6c6dd25b0a5cf551ee202414b4f2d0565a13784c57f1be75ffe410dee1e58773  core.py  pico-tree
+bbf1d3c493941b592c42fb1a84c05d0790576f7e65926f26430d0c02843e1a68  coreml_export.py  release tooling (24 Sep 2026)
+b69fdaed76131e5848bb5c7a09490dbeec940d0279f37b1974fe7148f53a46e9  corner_panel.py  pico-tree
+64fa10bdb7286f2ccecfc2c405645eb87213b535c421430191760363f2efdfd8  cornerfill.py  pico-tree
+b345c4466c5c33ae5c00fe86dc6cbea2105fa8d58b1eef195235da939a3a9a38  cputime.py  release tooling (24 Sep 2026)
+b8a91b2a1cd4455f9bdc826681862631ccf1f469858861b90d98338724975728  degraded_sets.py  release tooling (24 Sep 2026)
+a4b4ef864fce0e782b0f01394bce17cca3db4057ad753f0c650dc1690c82cfe3  earlyexit.py  pico-tree
+44ae1404d648d9141b48dd38faf9b7874128a0942df7f94cc714bff8b4b546f3  eval_onnx.py  release tooling (24 Sep 2026)
+60d6c4ba49a6f3df00b2fa92c741c14649deff74a0bde12c063e0047189c670f  evaluate.py  pico-tree
+0785d1039dd66885966ffddf8e17f88e9407d74113dc8a33a3d3c0a1ee41e80f  exclude_update.py  release tooling (24 Sep 2026)
+72e9e648f3bec99495c49742fdb3200272ec6b38aecc5fc42284b7f0db8acbbf  export.py  release tooling (24 Sep 2026)
+cd1a1610b22d43808d2e987eb84d39958f698f2ba3c8f6d661863efe77338f9c  export_eval_defs.py  release tooling (24 Sep 2026)
+54e126157910acc3462d05847a20f0cc126fb764ab7701b4a6ad75a1424eece2  export_manifest.py  release tooling (24 Sep 2026)
+84368d4d065fc37336983e12e912e18c30849a82bac91a66a7d080fd131a92b4  export_manifest_release.py  release tooling (release manifests; internal name export_manifest_v2.py)
+ded990f2d46940b433cb84415839d6ce3df425ca3b0722ba2426d050de2cbce6  fair_photo.py  release tooling (24 Sep 2026)
+df125f69ed1fb0e26507bce978bdf7fd59a530c0f587b772ae90b01d6fda3387  fetch_weights.py  pico-tree
+0c436a3b31eecc396a10c783ac8426b308817220a3e6ae0376d556aff84466a1  filldrop.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+3fb2c6bd2a26fbc7ed807b809ee561f2a9c20aa48effbc37929fb4bbc22fda0e  fillmask_export.py  lead-overlay
+c103a21791b84375a5c8208a7bf48e1ebb70461335b5f05d0db1a5b06496d066  final_stats.py  release tooling (24 Sep 2026)
+4d17e29c915037a1ad58a3d94f2523d2ff32050164247602503af3175858ffaf  fmt_thresholds.py  lead-overlay
+7a5ddd921e28ac56f97e91bac870b144b4fbdd9c12a259559c51bcca2350d5df  focus.py  lead-overlay (freeze scoring code) (text-sanitised: internal workspace names in comments/metadata)
+4e925b1dc5c52c86c722a2ac94025859b9c576baefe18a68c6ab20f6caca4137  fp16_fill.py  lead-overlay
+9d416f8549ffb35008b659c945c4260fcaf27975ac4fff1913253e3f911a1587  gpu_parity.py  release tooling (24 Sep 2026)
+75ed78565dbaf995578c55c40ee0df9dc7395bbc64eede14a59724952141db13  int8_variants.py  pico-tree
+ab0c22755ada16fc7241777815b1a1cbadeec73316070a1f4e9e8672bbcbd957  int8_wo.py  pico-tree
+670443738c1c97a9ef9205c53ff28bf89bb1fd6cb83a968d1ebfca95d95845f7  meva_frames.py  release tooling (24 Sep 2026)
+a6141892e439e82b571a4509e397a8d0b5cd7a76bf64b4d70a36874aef3c96e0  meva_roll.py  release tooling (24 Sep 2026)
+d091767378b23e8ad5c0e974a698332ff19de52826efede0843a0b9ee444805b  meva_test.py  release tooling (24 Sep 2026)
+d2556b04e3fd84ac124b38a5e5c6d2a6764a0874495a50fc762d098dd5c5f001  mixv3.py  campaign jobs
+9669312da5cf5cd1ef06eea5f476b91eec31f48edd374c31ad62361a2e666681  model.py  pico-tree
+6f63f50f4dc3f80ccd049370b620a53d5f24c9bf6a3aaaee6c0e7b2f62b408dc  model_x.py  pico-tree
+2991db154047a2ee046888cfe689635210716d620e457e708516e77ee0088fb9  oi_test.py  release tooling (24 Sep 2026)
+d8427e477afaa4dd727aab96b6ec19b783d629c3dc27e6d96c8376576229c7e5  onnx_eval.py  pico-tree
+2544833139912f326e714af2f71f3dc52d94ccb449fd0da3d8b6ba8e156510c8  onnx_parity.py  pico-tree
+369df5676f0bfcbc346ce62e94718040231ba1eb9004cc3a12684ccc72b9c5c4  onnx_probe.py  pico-tree
+de8527adfa8f88d634c1d8a1e775a737f87f39977dda1afcd790fcbb35b6cb0e  openimages.py  release tooling (24 Sep 2026)
+f0c7469ca7f4933415789c13b7dcbefdeb88989f4bdc1f9ad575e657965bc480  origin_val2017_ids.json  release tooling (24 Sep 2026)
+83f7bd1622ee6c9a81d72155796a47aab3faa9c4ef50c0fe96658c43f1ba5adf  pack_extra.py  release tooling (24 Sep 2026)
+1bb020d031668b831f672ab9d24bc11ae59fa3f1fd812bfb4dfa879b5c4f49f2  package_renders.py  release tooling (24 Sep 2026)
+16bb9cda1263c0ec447147d1efd1233ba94f4f9a5e954ee7d9b991d6a0187822  pico.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+b90b2c5de6a2e9a1f5123e0c281ed117ad1e5badb6fd02232cf46893ff7b2170  prep_sources.py  release tooling (24 Sep 2026)
+86ad339f900a1721e8f1c2ba5b2c76962fd8c2e4143e83f7170748e5518c5a37  protected_eval.py  release tooling (24 Sep 2026)
+10d4878630ae40fece479d62ba2efa5865dcefa817d69bc5bad09a6d10e67c5f  qat.py  pico-tree
+848286ac9c0791361c9868ea13edc15b9b801f163fa19229cd70646ec8224b1c  res_probe.py  release tooling (24 Sep 2026)
+d780b4d906f30f3c02c1f4567844aafae9925f6948033e2767f378e22685f647  risk_coverage.py  release tooling (24 Sep 2026)
+1ea25486754808cafaaf5caab5a40b5f629cf93bfb249bd82581346ae5fdd015  round2_table.py  pico-tree
+de8deeb764fdf408542558ca7acf34bd590a88323b6bf8c283c917b80c714b42  scrub.py  pico-tree
+6ba62932d1ba4fdc92bde6f5af36e725e60b05a635d782fa5c2a2e1e56b6cd22  selective.py  release tooling (24 Sep 2026)
+a2e9468e9637ba80fa81abbb82826a68403d3dea8e7dc50e4640f2d3501c48ed  sheet.py  release tooling (24 Sep 2026)
+c900837e5a3b1bec8ff11eae2ff285eff9174564e07822787fc8abeffd990f8e  soup.py  pico-tree
+ea0dcb02e0ff9bedd905ec028c9fa28eea8579e291db74f2c9c837d33fb614c7  soupn.py  campaign jobs
+511834eeeffb0d6c1abdd8826df841ae0029ce613d1bc6a9416a4582bc861695  suite.py  release tooling (24 Sep 2026)
+d749437d9a303b7bfc3cdd77e97213a93ed72b9b65b16f5c2f83f02857801b53  test_earlyexit.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+b3de165f3979eb30f545e275bc001c987ebcb356fa547c4677d491dff67fb92d  test_filldrop.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+82661b0ef898b532c82c1590d443568f7e1879be79f6a03c16482217355775e7  test_focus.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+15d7c823a56156e9a33f0ed210d88160018e054cb92784e2ca43931f3478a556  test_h13.py  pico-tree
+ee037bc09ffbcde44cba575d4ba44fbdd66d4810d5fda5411526f7a740f6301b  test_model_x.py  pico-tree (text-sanitised: internal workspace names in comments/metadata)
+74d5d518cec1b5b184a3fb600e29f83a1ec72134cb5550df4d3766391aa393d6  tiers.py  release tooling (24 Sep 2026)
+78a83deac45d98f7dd23bbfc43a956269bf5e62a5aa5dff33bec231c56ded2df  train.py  pico-tree
+5c994e5843804a48306d2a4ebfbebedb403c507974bad2dfb7ec0011b1a11efc  train_ddp.py  pico-tree
+2d14b907ed84d1079da4d45e0c441548067bc0436dcd2f06043a8ac00eec4b8f  tta_test.py  release tooling (24 Sep 2026)

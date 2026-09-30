@@ -1,0 +1,33 @@
+{
+ "candidate": "rightwayup-v1.0-freeze-v2-gridfix",
+ "owner_go_ahead": "owner in chat, Tue 29 Sep 2026 ~10:50 AEST: 'We are now ready to freeze and we need the Pico.' Tier choice accepted earlier: 'OK, your suggestions make sense' (Max = M3-SOUP8, Fast = GF-SV3-kdM3, Nano = GF-SOUP-SV2).",
+ "stages": {
+  "nano": {"ckpt": "/workspace/rotation-data/rotlab/runs/GF-SOUP-SV2/final.pt", "canvas": 112, "pool": "fill"},
+  "small": {"ckpt": "/workspace/rotation-data/rotlab/runs/GF-SV3-kdM3/final.pt", "canvas": 224, "pool": "fill"},
+  "large": {"ckpt": "/workspace/rotation-data/rotlab/runs/M3-SOUP8/final.pt", "canvas": 280, "pool": null}
+ },
+ "stage_inference": {
+  "fill": "rotlab.focus FocusNet plan 'fill' (letterbox-fill patch tokens dropped; checkpoint sinks 0, tol 1e-3) = the shipped fill-drop ONNX; scored by `python -m rotlab.focus eval CKPT --mode fill --canvases C --sets <final sets>` (gated by camp_final.check_score(sha, canvas, 'fill'))",
+  "null": "full-token RotNet; scored by `python -m rotlab.camp_eval CKPT --canvases C --sets <final sets>` (gated by camp_final.check_score(sha, canvas, None))",
+  "code_tree": "/workspace/code-final (campaign code + lead overlay); regression check 29 Sep: fresh_diode + fair re-scored from this tree equal the development stores exactly (3 stages, 3,990 predictions, max |dconf| 0)"
+ },
+ "route_threshold": 0.8,
+ "route_threshold_note": "legacy single-router field = Pro route; the released tiers (below) carry their own route thresholds",
+ "decoder": "argmax + local circular mean over +-10 bins (core.decode); conf = mass within +-10 deg",
+ "tiers": {
+  "nano": {"name": "Nano (S @112, fill-drop)", "stage": "nano", "standard": 0.533, "strict": 0.8},
+  "fast": {"name": "Fast (S @224, fill-drop)", "stage": "small", "standard": 0.628, "strict": 0.735},
+  "balanced": {"name": "Balanced (S@224 -> L@280, ~10% routed)", "stage": "small", "large": "large", "route": 0.628, "standard": 0.692, "strict": 0.748},
+  "pro": {"name": "Pro (S@224 -> L@280, ~20% routed)", "stage": "small", "large": "large", "route": 0.8, "standard": 0.729, "strict": 0.729},
+  "max": {"name": "Max (L @280, every image)", "stage": "large", "standard": 0.726, "strict": 0.726}
+ },
+ "abstain": {
+  "rule": "answer iff conf >= threshold; routed images take the large stage's prediction and confidence; effective strict = max(standard, strict)",
+  "standard_definition": "answers ~90% of the calibration images (release final_stats.Tier t_cov90)",
+  "strict_definition": "lowest threshold with answered error rate <= 1% (calibration sets weighted equally)",
+  "calibration": "rotlab.calib meva_cal / poly_cal / oi_cal; route = small-stage confidence quantile at the 10% / 20% route share",
+  "sources": "pod /workspace/ops/thresholds-v2-M3.json (small GF-SV3-kdM3 fill, large M3-SOUP8) and /workspace/ops/thresholds-v2-nanoSV2.json (nano GF-SOUP-SV2 fill)",
+  "formats": "these are the PyTorch/FP32 thresholds; per-format thresholds (INT8 / FP16 / Core ML) are calibrated on the same calibration sets after the freeze and never on final sets"
+ },
+ "selection": "Candidates chosen on development panels only (grid-free dev, newval, five-seed, cue-free photos, R-LiViT dev, W panels) under research/grid-fix/PREREG.md; never on the final sets, which are unopened at freeze time."
+}

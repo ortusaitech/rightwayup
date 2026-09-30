@@ -1,0 +1,34 @@
+RightWayUp
+Copyright 2026 ORTUS AI SOFTWARE LIMITED
+
+This product includes software and model weights developed by ORTUS AI.
+RightWayUp by ORTUS AI (https://cheqit.ortusai.io/resources/rightwayup/)
+
+The model weights are modified from DINOv2 (ViT-S/14 and ViT-L/14, without
+registers), Copyright (c) Meta Platforms, Inc. and affiliates, licensed under
+the Apache License 2.0 (https://github.com/facebookresearch/dinov2), obtained
+via timm (PyTorch Image Models), Copyright 2019 Ross Wightman, Apache-2.0.
+ORTUS AI fully fine-tuned all weights, added a new classification head,
+exported them to ONNX (FP32, FP16) and Core ML, and quantised them to INT8.
+
+Training images are not redistributed. Attribution: DATA-CARD.md, manifests/.
+  PASS (Asano et al., 2021), CC BY 4.0; images by their Flickr authors (YFCC100M)
+  COCO 2017 (train and unlabeled): images CC BY 2.0 or CC BY 4.0 by their
+    Flickr authors; a few images under public-domain-like terms (CC0, Public
+    Domain Mark, "no known copyright restrictions", US Government Work)
+  Open Images (Google; test subset and V7 train): images CC BY 2.0 or CC BY 4.0
+    by their Flickr authors, a few under public-domain-like terms
+  CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by, CC BY 4.0 dataset
+    card): YFCC100M images licensed CC BY 2.0 by their Flickr authors
+  COCO annotations (c) COCO Consortium, CC BY 4.0; Open Images annotations
+    (c) Google LLC, CC BY 4.0. Used to select images; identifiers appear in
+    manifests/.
+  DIODE (Vasiljevic et al., 2019): Copyright (c) 2021 diode-dataset, MIT licence
+  "Multiview Extended Video with Activities" (MEVA) dataset by Kitware Inc. and
+    IARPA, CC BY 4.0, https://mevadata.org/ . Frames were extracted, cropped,
+    resized, rotated and degraded. No endorsement by Kitware, IARPA or the
+    U.S. Government is implied.
+  Poly Haven assets, CC0; renders by ORTUS AI
+
+Runtime dependency (not bundled in the weights):
+  ONNX Runtime, Copyright (c) Microsoft Corporation, MIT licence.

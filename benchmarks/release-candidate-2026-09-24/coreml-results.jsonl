@@ -1,0 +1,15 @@
+{"model": "coreml/nano-s112", "units": "ALL", "canvas": 112, "batch1": {"p50_ms": 2.51, "p95_ms": 2.96, "throughput_img_s": 398.7}, "batch16": {"p50_ms": 10.59, "p95_ms": 10.66, "throughput_img_s": 1510.4}}
+{"model": "coreml/nano-s112", "units": "CPU+ANE", "canvas": 112, "batch1": {"p50_ms": 1.09, "p95_ms": 1.09, "throughput_img_s": 920.6}, "batch16": {"p50_ms": 10.59, "p95_ms": 10.62, "throughput_img_s": 1510.9}}
+{"model": "coreml/nano-s112", "units": "CPU+GPU", "canvas": 112, "batch1": {"p50_ms": 2.46, "p95_ms": 3.54, "throughput_img_s": 406.0}, "batch16": {"p50_ms": 17.93, "p95_ms": 17.96, "throughput_img_s": 892.6}}
+{"model": "coreml/nano-s112", "units": "CPU", "canvas": 112, "batch1": {"p50_ms": 3.58, "p95_ms": 3.79, "throughput_img_s": 279.7}, "batch16": {"p50_ms": 23.89, "p95_ms": 26.05, "throughput_img_s": 669.8}}
+{"parity_n": 600, "coreml_w10": 0.92, "onnx_fp32_w10": 0.92, "diff_gt2deg": 0.0}
+{"model": "coreml/fast-s224", "units": "ALL", "canvas": 224, "batch1": {"p50_ms": 3.02, "p95_ms": 3.04, "throughput_img_s": 331.0}, "batch16": {"p50_ms": 55.23, "p95_ms": 55.34, "throughput_img_s": 289.7}}
+{"model": "coreml/fast-s224", "units": "CPU+ANE", "canvas": 224, "batch1": {"p50_ms": 3.03, "p95_ms": 3.05, "throughput_img_s": 330.6}, "batch16": {"p50_ms": 55.08, "p95_ms": 55.23, "throughput_img_s": 290.5}}
+{"model": "coreml/fast-s224", "units": "CPU+GPU", "canvas": 224, "batch1": {"p50_ms": 6.67, "p95_ms": 6.74, "throughput_img_s": 149.9}, "batch16": {"p50_ms": 71.62, "p95_ms": 71.71, "throughput_img_s": 223.4}}
+{"model": "coreml/fast-s224", "units": "CPU", "canvas": 224, "batch1": {"p50_ms": 8.37, "p95_ms": 9.05, "throughput_img_s": 119.5}, "batch16": {"p50_ms": 146.64, "p95_ms": 150.11, "throughput_img_s": 109.1}}
+{"parity_n": 600, "coreml_w10": 0.955, "onnx_fp32_w10": 0.955, "diff_gt2deg": 0.0}
+{"model": "coreml/large-l224", "units": "ALL", "canvas": 224, "batch1": {"p50_ms": 32.96, "p95_ms": 33.17, "throughput_img_s": 30.3}, "batch16": {"p50_ms": 505.76, "p95_ms": 505.87, "throughput_img_s": 31.6}}
+{"model": "coreml/large-l224", "units": "CPU+ANE", "canvas": 224, "batch1": {"p50_ms": 32.94, "p95_ms": 33.05, "throughput_img_s": 30.4}, "batch16": {"p50_ms": 505.58, "p95_ms": 510.78, "throughput_img_s": 31.6}}
+{"model": "coreml/large-l224", "units": "CPU+GPU", "canvas": 224, "batch1": {"p50_ms": 62.96, "p95_ms": 63.08, "throughput_img_s": 15.9}, "batch16": {"p50_ms": 798.73, "p95_ms": 826.77, "throughput_img_s": 20.0}}
+{"model": "coreml/large-l224", "units": "CPU", "canvas": 224, "batch1": {"p50_ms": 70.23, "p95_ms": 92.2, "throughput_img_s": 14.2}, "batch16": {"p50_ms": 994.66, "p95_ms": 1053.29, "throughput_img_s": 16.1}}
+{"parity_n": 600, "coreml_w10": 0.9916666666666667, "onnx_fp32_w10": 0.9916666666666667, "diff_gt2deg": 0.0}

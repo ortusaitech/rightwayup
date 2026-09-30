@@ -1,0 +1,935 @@
+{
+ "manifest_set": "RightWayUp v1.0 (v2 models): per-image training manifests, 23 grid-free families",
+ "row_form": "release row form of release/manifests/training (v1) plus licence_class, derivation, replaces, replacement_reason, stored_sha256; see README.md",
+ "totals": {
+  "rows": 1251672,
+  "used_in_training": 1245604,
+  "dropped_near_duplicate": 6068,
+  "unique_ids": 1251672
+ },
+ "tiers": {
+  "Max, Fast, Pico (and Balanced/Pro, built from Max + Fast)": {
+   "families": 23,
+   "rows": 1251672,
+   "used_in_training": 1245604,
+   "family_names": [
+    "gf_pass",
+    "gf_pass2",
+    "gf_coco",
+    "gf_coco2",
+    "gf_oi",
+    "gf_diode",
+    "gf_diode2",
+    "gf_meva",
+    "gf_meva2",
+    "gf_poly_haven",
+    "gf_poly_direct",
+    "gf_fresh_coco",
+    "gf_fresh_oi",
+    "gf_oi_train2",
+    "gf_coco_pd",
+    "gf_coco_by",
+    "gf_cc1",
+    "gf_cc2",
+    "gf_cc3",
+    "gf_cc4",
+    "gf_oi7a",
+    "gf_oi7b",
+    "gf_oi7c"
+   ]
+  },
+  "Nano": {
+   "families": 16,
+   "rows": 711143,
+   "used_in_training": 705075,
+   "family_names": [
+    "gf_pass",
+    "gf_pass2",
+    "gf_coco",
+    "gf_coco2",
+    "gf_oi",
+    "gf_diode",
+    "gf_diode2",
+    "gf_meva",
+    "gf_meva2",
+    "gf_poly_haven",
+    "gf_poly_direct",
+    "gf_fresh_coco",
+    "gf_fresh_oi",
+    "gf_oi_train2",
+    "gf_coco_pd",
+    "gf_coco_by"
+   ]
+  }
+ },
+ "by_licence_class": {
+  "cc-by": {
+   "rows": 1231722,
+   "used_in_training": 1225738
+  },
+  "cc0-assets": {
+   "rows": 3586,
+   "used_in_training": 3579
+  },
+  "mit": {
+   "rows": 14746,
+   "used_in_training": 14669
+  },
+  "pd-like": {
+   "rows": 1618,
+   "used_in_training": 1618
+  }
+ },
+ "by_licence": {
+  "CC BY 2.0": {
+   "rows": 627653,
+   "used_in_training": 627614
+  },
+  "CC BY 2.0 (Flickr \"Attribution License\")": {
+   "rows": 405703,
+   "used_in_training": 399759
+  },
+  "CC BY 2.0 (YFCC100M licensename: Attribution License; PASS release)": {
+   "rows": 194297,
+   "used_in_training": 194297
+  },
+  "CC BY 4.0": {
+   "rows": 4069,
+   "used_in_training": 4068
+  },
+  "CC0 assets; renders by ORTUS AI": {
+   "rows": 3586,
+   "used_in_training": 3579
+  },
+  "MIT": {
+   "rows": 14746,
+   "used_in_training": 14669
+  },
+  "No known copyright restrictions": {
+   "rows": 435,
+   "used_in_training": 435
+  },
+  "Public Domain Dedication (CC0)": {
+   "rows": 514,
+   "used_in_training": 514
+  },
+  "Public Domain Mark": {
+   "rows": 660,
+   "used_in_training": 660
+  },
+  "United States Government Work": {
+   "rows": 9,
+   "used_in_training": 9
+  }
+ },
+ "by_dataset": {
+  "COCO 2017 train (Flickr)": {
+   "rows": 12130,
+   "used_in_training": 12091
+  },
+  "COCO 2017 unlabeled (Flickr)": {
+   "rows": 10406,
+   "used_in_training": 10406
+  },
+  "CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by; YFCC100M Flickr photos)": {
+   "rows": 276016,
+   "used_in_training": 276016
+  },
+  "DIODE 2019 train (Vasiljevic et al.)": {
+   "rows": 14746,
+   "used_in_training": 14669
+  },
+  "MEVA KF1 / drops 4-5 (Kitware, IARPA DIVA)": {
+   "rows": 3750,
+   "used_in_training": 3749
+  },
+  "ORTUS AI Blender renders of Poly Haven assets": {
+   "rows": 3586,
+   "used_in_training": 3579
+  },
+  "Open Images V7 test subset (Flickr)": {
+   "rows": 33275,
+   "used_in_training": 33275
+  },
+  "Open Images V7 train subset (Flickr)": {
+   "rows": 297763,
+   "used_in_training": 297763
+  },
+  "PASS v3 (Asano et al., 2021)": {
+   "rows": 600000,
+   "used_in_training": 594056
+  }
+ },
+ "duplicates": {
+  "rule": "rows with the same Flickr photo id (locator.flickr_id / yfcc_photoid / Flickr URL) or identical stored training bytes (stored_sha256) are counted as one image",
+  "rows_sharing_a_flickr_photo_id": 2125,
+  "flickr_photo_ids_in_more_than_one_row": 1059,
+  "rows_sharing_stored_sha256": 2158,
+  "distinct_images": 1250283,
+  "distinct_images_used_in_training": 1244222,
+  "rows_in_groups_of_2_or_more": 2740,
+  "groups_of_2_or_more": 1351
+ },
+ "gaps": {
+  "no_locator_url": {
+   "rows": 3586,
+   "ids_first_50": [
+    "direct-v3-00a0891badbfaf9af976e395",
+    "direct-v3-02d00aa9272a18927693f768",
+    "direct-v3-0581e2fba03c0e804e11f005",
+    "direct-v3-05fbc60c3d085c780e5f95b0",
+    "direct-v3-060e5299eb363a7b2eda2b33",
+    "direct-v3-096ee8cf9973f066f658aadf",
+    "direct-v3-0adc8d8a8baee777ca12fecb",
+    "direct-v3-0ba524e10d7692fbc21b2727",
+    "direct-v3-0c1cc5d59e38f752881e6d23",
+    "direct-v3-0ccb3c9e0a98ada5d16a8214",
+    "direct-v3-0dda106d489b03e5986f4bdf",
+    "direct-v3-0e25f4a22227a9d0a4262663",
+    "direct-v3-0f390ee91f87288280c4b032",
+    "direct-v3-0fedce751bc15120a805b9d2",
+    "direct-v3-101357b25d0b8c5c30b4efe1",
+    "direct-v3-10f45cc13ded33d6607890bc",
+    "direct-v3-132e848f92e5c21de9e9d19d",
+    "direct-v3-1504575a1b615e47c1dc0804",
+    "direct-v3-1d9d0a6d85ff67ff79a8ffa0",
+    "direct-v3-216d192c786f02767ac784bd",
+    "direct-v3-2202e58eb93c50624e83bb79",
+    "direct-v3-269cdd65f5e80f4e439b5c7f",
+    "direct-v3-270e0644150f519181575d50",
+    "direct-v3-2a79adb477953d8ef93933bc",
+    "direct-v3-2a887e02aad887a85143d553",
+    "direct-v3-2da95b006b314d9f5cd694c7",
+    "direct-v3-331bf5c92dd08a566973177d",
+    "direct-v3-3b1239eac0fdfd2010deea52",
+    "direct-v3-3b4326ea72af4076f55d023a",
+    "direct-v3-3b6b9ab52cc224ee3d236331",
+    "direct-v3-3c71149da6fab6f6793f8d7f",
+    "direct-v3-3d415c1cce7003703b71b7c3",
+    "direct-v3-3d42a277b1cb909db0478151",
+    "direct-v3-3f1de1050f2fe4e5907f7506",
+    "direct-v3-4474b9b0dd9618d9b6fa718e",
+    "direct-v3-448fe7982c1e0428ecac31bc",
+    "direct-v3-485777a2741a266adff51f3b",
+    "direct-v3-4a2b1b7ddeae261ea335d1c1",
+    "direct-v3-4d33eb7f1392ae1a91dce577",
+    "direct-v3-4e697b92cfeec33ab81fef55",
+    "direct-v3-4f61154c9f3cffcaf18e6349",
+    "direct-v3-53a9a880cffebc55c9d1c7d3",
+    "direct-v3-5903c9c0fdb45c85dab5efa8",
+    "direct-v3-5bd06c71897bf00e43be1f62",
+    "direct-v3-5c8db15a5128c99d15ac37e6",
+    "direct-v3-5d8ab629255f8684e078ef3d",
+    "direct-v3-5fdbf67fd025e345b03a753d",
+    "direct-v3-629ae4b7ac8a7f0522a49db8",
+    "direct-v3-636dabc737bb8056dccc55ea",
+    "direct-v3-63918e997f70cd26934e39b5"
+   ]
+  }
+ },
+ "families": {
+  "gf_pass": {
+   "rows": 300000,
+   "used_in_training": 297048,
+   "dropped_near_duplicate": 2952,
+   "licence": {
+    "CC BY 2.0 (Flickr \"Attribution License\")": {
+     "rows": 202956,
+     "used_in_training": 200004
+    },
+    "CC BY 2.0 (YFCC100M licensename: Attribution License; PASS release)": {
+     "rows": 97044,
+     "used_in_training": 97044
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 300000,
+     "used_in_training": 297048
+    }
+   },
+   "dataset": {
+    "PASS v3 (Asano et al., 2021)": {
+     "rows": 300000,
+     "used_in_training": 297048
+    }
+   },
+   "replacements_or_substitutes": 97044,
+   "gaps": {}
+  },
+  "gf_pass2": {
+   "rows": 300000,
+   "used_in_training": 297008,
+   "dropped_near_duplicate": 2992,
+   "licence": {
+    "CC BY 2.0 (Flickr \"Attribution License\")": {
+     "rows": 202747,
+     "used_in_training": 199755
+    },
+    "CC BY 2.0 (YFCC100M licensename: Attribution License; PASS release)": {
+     "rows": 97253,
+     "used_in_training": 97253
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 300000,
+     "used_in_training": 297008
+    }
+   },
+   "dataset": {
+    "PASS v3 (Asano et al., 2021)": {
+     "rows": 300000,
+     "used_in_training": 297008
+    }
+   },
+   "replacements_or_substitutes": 97253,
+   "gaps": {}
+  },
+  "gf_coco": {
+   "rows": 3470,
+   "used_in_training": 3459,
+   "dropped_near_duplicate": 11,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 3470,
+     "used_in_training": 3459
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 3470,
+     "used_in_training": 3459
+    }
+   },
+   "dataset": {
+    "COCO 2017 train (Flickr)": {
+     "rows": 3470,
+     "used_in_training": 3459
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_coco2": {
+   "rows": 8637,
+   "used_in_training": 8609,
+   "dropped_near_duplicate": 28,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 8637,
+     "used_in_training": 8609
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 8637,
+     "used_in_training": 8609
+    }
+   },
+   "dataset": {
+    "COCO 2017 train (Flickr)": {
+     "rows": 8079,
+     "used_in_training": 8051
+    },
+    "COCO 2017 unlabeled (Flickr)": {
+     "rows": 558,
+     "used_in_training": 558
+    }
+   },
+   "replacements_or_substitutes": 573,
+   "gaps": {}
+  },
+  "gf_oi": {
+   "rows": 33275,
+   "used_in_training": 33275,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 33261,
+     "used_in_training": 33261
+    },
+    "CC BY 4.0": {
+     "rows": 14,
+     "used_in_training": 14
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 33275,
+     "used_in_training": 33275
+    }
+   },
+   "dataset": {
+    "Open Images V7 test subset (Flickr)": {
+     "rows": 33275,
+     "used_in_training": 33275
+    }
+   },
+   "replacements_or_substitutes": 5890,
+   "gaps": {}
+  },
+  "gf_diode": {
+   "rows": 11909,
+   "used_in_training": 11838,
+   "dropped_near_duplicate": 71,
+   "licence": {
+    "MIT": {
+     "rows": 11909,
+     "used_in_training": 11838
+    }
+   },
+   "licence_class": {
+    "mit": {
+     "rows": 11909,
+     "used_in_training": 11838
+    }
+   },
+   "dataset": {
+    "DIODE 2019 train (Vasiljevic et al.)": {
+     "rows": 11909,
+     "used_in_training": 11838
+    }
+   },
+   "replacements_or_substitutes": 1928,
+   "gaps": {}
+  },
+  "gf_diode2": {
+   "rows": 2837,
+   "used_in_training": 2831,
+   "dropped_near_duplicate": 6,
+   "licence": {
+    "MIT": {
+     "rows": 2837,
+     "used_in_training": 2831
+    }
+   },
+   "licence_class": {
+    "mit": {
+     "rows": 2837,
+     "used_in_training": 2831
+    }
+   },
+   "dataset": {
+    "DIODE 2019 train (Vasiljevic et al.)": {
+     "rows": 2837,
+     "used_in_training": 2831
+    }
+   },
+   "replacements_or_substitutes": 360,
+   "gaps": {}
+  },
+  "gf_meva": {
+   "rows": 3200,
+   "used_in_training": 3199,
+   "dropped_near_duplicate": 1,
+   "licence": {
+    "CC BY 4.0": {
+     "rows": 3200,
+     "used_in_training": 3199
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 3200,
+     "used_in_training": 3199
+    }
+   },
+   "dataset": {
+    "MEVA KF1 / drops 4-5 (Kitware, IARPA DIVA)": {
+     "rows": 3200,
+     "used_in_training": 3199
+    }
+   },
+   "replacements_or_substitutes": 900,
+   "gaps": {}
+  },
+  "gf_meva2": {
+   "rows": 550,
+   "used_in_training": 550,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 4.0": {
+     "rows": 550,
+     "used_in_training": 550
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 550,
+     "used_in_training": 550
+    }
+   },
+   "dataset": {
+    "MEVA KF1 / drops 4-5 (Kitware, IARPA DIVA)": {
+     "rows": 550,
+     "used_in_training": 550
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_poly_haven": {
+   "rows": 3466,
+   "used_in_training": 3459,
+   "dropped_near_duplicate": 7,
+   "licence": {
+    "CC0 assets; renders by ORTUS AI": {
+     "rows": 3466,
+     "used_in_training": 3459
+    }
+   },
+   "licence_class": {
+    "cc0-assets": {
+     "rows": 3466,
+     "used_in_training": 3459
+    }
+   },
+   "dataset": {
+    "ORTUS AI Blender renders of Poly Haven assets": {
+     "rows": 3466,
+     "used_in_training": 3459
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {
+    "no_locator_url": 3466
+   }
+  },
+  "gf_poly_direct": {
+   "rows": 120,
+   "used_in_training": 120,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC0 assets; renders by ORTUS AI": {
+     "rows": 120,
+     "used_in_training": 120
+    }
+   },
+   "licence_class": {
+    "cc0-assets": {
+     "rows": 120,
+     "used_in_training": 120
+    }
+   },
+   "dataset": {
+    "ORTUS AI Blender renders of Poly Haven assets": {
+     "rows": 120,
+     "used_in_training": 120
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {
+    "no_locator_url": 120
+   }
+  },
+  "gf_fresh_coco": {
+   "rows": 9480,
+   "used_in_training": 9480,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 9480,
+     "used_in_training": 9480
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 9480,
+     "used_in_training": 9480
+    }
+   },
+   "dataset": {
+    "COCO 2017 unlabeled (Flickr)": {
+     "rows": 9480,
+     "used_in_training": 9480
+    }
+   },
+   "replacements_or_substitutes": 1570,
+   "gaps": {}
+  },
+  "gf_fresh_oi": {
+   "rows": 4007,
+   "used_in_training": 4007,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 4006,
+     "used_in_training": 4006
+    },
+    "CC BY 4.0": {
+     "rows": 1,
+     "used_in_training": 1
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 4007,
+     "used_in_training": 4007
+    }
+   },
+   "dataset": {
+    "Open Images V7 train subset (Flickr)": {
+     "rows": 4007,
+     "used_in_training": 4007
+    }
+   },
+   "replacements_or_substitutes": 574,
+   "gaps": {}
+  },
+  "gf_oi_train2": {
+   "rows": 29243,
+   "used_in_training": 29243,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 28954,
+     "used_in_training": 28954
+    },
+    "CC BY 4.0": {
+     "rows": 41,
+     "used_in_training": 41
+    },
+    "No known copyright restrictions": {
+     "rows": 2,
+     "used_in_training": 2
+    },
+    "Public Domain Dedication (CC0)": {
+     "rows": 75,
+     "used_in_training": 75
+    },
+    "Public Domain Mark": {
+     "rows": 171,
+     "used_in_training": 171
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 28995,
+     "used_in_training": 28995
+    },
+    "pd-like": {
+     "rows": 248,
+     "used_in_training": 248
+    }
+   },
+   "dataset": {
+    "Open Images V7 train subset (Flickr)": {
+     "rows": 29243,
+     "used_in_training": 29243
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_coco_pd": {
+   "rows": 648,
+   "used_in_training": 648,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "No known copyright restrictions": {
+     "rows": 428,
+     "used_in_training": 428
+    },
+    "Public Domain Dedication (CC0)": {
+     "rows": 113,
+     "used_in_training": 113
+    },
+    "Public Domain Mark": {
+     "rows": 100,
+     "used_in_training": 100
+    },
+    "United States Government Work": {
+     "rows": 7,
+     "used_in_training": 7
+    }
+   },
+   "licence_class": {
+    "pd-like": {
+     "rows": 648,
+     "used_in_training": 648
+    }
+   },
+   "dataset": {
+    "COCO 2017 train (Flickr)": {
+     "rows": 326,
+     "used_in_training": 326
+    },
+    "COCO 2017 unlabeled (Flickr)": {
+     "rows": 322,
+     "used_in_training": 322
+    }
+   },
+   "replacements_or_substitutes": 5,
+   "gaps": {}
+  },
+  "gf_coco_by": {
+   "rows": 301,
+   "used_in_training": 301,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 211,
+     "used_in_training": 211
+    },
+    "CC BY 4.0": {
+     "rows": 90,
+     "used_in_training": 90
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 301,
+     "used_in_training": 301
+    }
+   },
+   "dataset": {
+    "COCO 2017 train (Flickr)": {
+     "rows": 255,
+     "used_in_training": 255
+    },
+    "COCO 2017 unlabeled (Flickr)": {
+     "rows": 46,
+     "used_in_training": 46
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_cc1": {
+   "rows": 100000,
+   "used_in_training": 100000,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "dataset": {
+    "CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by; YFCC100M Flickr photos)": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_cc2": {
+   "rows": 100000,
+   "used_in_training": 100000,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "dataset": {
+    "CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by; YFCC100M Flickr photos)": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_cc3": {
+   "rows": 51818,
+   "used_in_training": 51818,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 51818,
+     "used_in_training": 51818
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 51818,
+     "used_in_training": 51818
+    }
+   },
+   "dataset": {
+    "CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by; YFCC100M Flickr photos)": {
+     "rows": 51818,
+     "used_in_training": 51818
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_cc4": {
+   "rows": 24198,
+   "used_in_training": 24198,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 24198,
+     "used_in_training": 24198
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 24198,
+     "used_in_training": 24198
+    }
+   },
+   "dataset": {
+    "CommonCatalog CC-BY (common-canvas/commoncatalog-cc-by; YFCC100M Flickr photos)": {
+     "rows": 24198,
+     "used_in_training": 24198
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_oi7a": {
+   "rows": 100000,
+   "used_in_training": 100000,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 99548,
+     "used_in_training": 99548
+    },
+    "CC BY 4.0": {
+     "rows": 81,
+     "used_in_training": 81
+    },
+    "Public Domain Dedication (CC0)": {
+     "rows": 163,
+     "used_in_training": 163
+    },
+    "Public Domain Mark": {
+     "rows": 208,
+     "used_in_training": 208
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 99629,
+     "used_in_training": 99629
+    },
+    "pd-like": {
+     "rows": 371,
+     "used_in_training": 371
+    }
+   },
+   "dataset": {
+    "Open Images V7 train subset (Flickr)": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_oi7b": {
+   "rows": 100000,
+   "used_in_training": 100000,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 99728,
+     "used_in_training": 99728
+    },
+    "CC BY 4.0": {
+     "rows": 65,
+     "used_in_training": 65
+    },
+    "No known copyright restrictions": {
+     "rows": 1,
+     "used_in_training": 1
+    },
+    "Public Domain Dedication (CC0)": {
+     "rows": 109,
+     "used_in_training": 109
+    },
+    "Public Domain Mark": {
+     "rows": 95,
+     "used_in_training": 95
+    },
+    "United States Government Work": {
+     "rows": 2,
+     "used_in_training": 2
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 99793,
+     "used_in_training": 99793
+    },
+    "pd-like": {
+     "rows": 207,
+     "used_in_training": 207
+    }
+   },
+   "dataset": {
+    "Open Images V7 train subset (Flickr)": {
+     "rows": 100000,
+     "used_in_training": 100000
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  },
+  "gf_oi7c": {
+   "rows": 64513,
+   "used_in_training": 64513,
+   "dropped_near_duplicate": 0,
+   "licence": {
+    "CC BY 2.0": {
+     "rows": 64342,
+     "used_in_training": 64342
+    },
+    "CC BY 4.0": {
+     "rows": 27,
+     "used_in_training": 27
+    },
+    "No known copyright restrictions": {
+     "rows": 4,
+     "used_in_training": 4
+    },
+    "Public Domain Dedication (CC0)": {
+     "rows": 54,
+     "used_in_training": 54
+    },
+    "Public Domain Mark": {
+     "rows": 86,
+     "used_in_training": 86
+    }
+   },
+   "licence_class": {
+    "cc-by": {
+     "rows": 64369,
+     "used_in_training": 64369
+    },
+    "pd-like": {
+     "rows": 144,
+     "used_in_training": 144
+    }
+   },
+   "dataset": {
+    "Open Images V7 train subset (Flickr)": {
+     "rows": 64513,
+     "used_in_training": 64513
+    }
+   },
+   "replacements_or_substitutes": 0,
+   "gaps": {}
+  }
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "pytorch": {
+  "standard": 0.421,
+  "strict": 0.828,
+  "strict_raw": 0.8275,
+  "store": "PICO-N70S80-fill"
+ },
+ "fp32": {
+  "standard": 0.426,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "PICO-N70S80-onnx-fill-fp32"
+ },
+ "fp16": {
+  "standard": 0.425,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "FMT-PICO-N70S80-fp16"
+ },
+ "int8": {
+  "standard": 0.415,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "PICO-N70S80-onnx-fill-int8"
+ },
+ "m-fp16": {
+  "standard": 0.425,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "FMT-PICO-N70S80m-fp16"
+ },
+ "m-int8": {
+  "standard": 0.423,
+  "strict": 0.853,
+  "strict_raw": 0.8525,
+  "store": "FMT-PICO-N70S80m-int8"
+ },
+ "browser-fp32": {
+  "standard": 0.426,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "PICO-N70S80-onnx-full-fp32"
+ },
+ "browser-int8": {
+  "standard": 0.415,
+  "strict": 0.833,
+  "strict_raw": 0.8325,
+  "store": "PICO-N70S80-onnx-full-int8"
+ },
+ "coreml": {
+  "standard": 0.423,
+  "strict": 0.838,
+  "strict_raw": 0.8375,
+  "store": "FMT-PICOS80-coreml (runs/final-v2/cal-u8/cmcal-PICOS80-c70.npz, b16 package, units ALL)"
+ },
+ "_meta": {
+  "model": "PICO-N70S80 = 0.2 x PICO-N70L + 0.8 x PICO-N70C (WiSE-FT weight average; rotlab.soup)",
+  "checkpoint_sha256": "6d0b9fb06cea347377c7b4e5ff0efd133bb3f6743e28f0ca5fa1b47cb54cb8a5",
+  "canvas": 70,
+  "rule": "release Tier.calibrate over meva_cal/poly_cal/oi_cal; standard = 10% confidence quantile; strict = max(standard, lowest grid value with mean answered error <= 1%)",
+  "decision": "owner 30 Sep 2026 ~13:58 AEST: \"Yes, we should.\" (replace the frozen Pico N70L with S80)",
+  "supersedes": "thresholds-pico.json (PICO-N70L)"
+ }
+}

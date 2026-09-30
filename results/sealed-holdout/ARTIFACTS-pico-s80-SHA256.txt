@@ -1,0 +1,14 @@
+5ef6a9930f6c2c24c68a43f7cd3f017656bdaf378cb8261e7354f99b8d4beb25  onnx/rightwayup-pico-n70s80-s70-fill-fp16.onnx
+37bfba4b0b8bbc595995eb50b8f7d313016f9aeb0628842ff727ef39c37a7221  onnx/rightwayup-pico-n70s80-s70-fill-fp32.onnx
+cf456234feabc4f5f5023198e13c2785779ff8bcd3d223f44f61667b963e9c22  onnx/rightwayup-pico-n70s80-s70-fill-int8.onnx
+af740c8f351c71f639636ca788da099e3a41c38cae5b803b1e3a849784f5d84c  onnx/rightwayup-pico-n70s80-s70-fillmask-fp16.onnx
+e9ad95250d0def48dfa2990c9b5054c81df42ca53b46bb54c909a7ac0721d202  onnx/rightwayup-pico-n70s80-s70-fillmask-fp32-int8.onnx
+88209791057ba3569ba439a628d3dc00d05dee470ce20dac6c18dc0dd77311e5  onnx/rightwayup-pico-n70s80-s70-fillmask-fp32.onnx
+c0402daaeb3c4dbebc8c1fcf736df7c4150e9e531ca75d5788dd8d32318eb1cc  onnx/rightwayup-pico-n70s80-s70-full-fp32.onnx
+53a695ae0b4650d8e91715294e1a237988231e1f6abb6202eb8fcffeb738046c  onnx/rightwayup-pico-n70s80-s70-full-int8.onnx
+f6e77b3c06a13ebff7a950932e9c0a1eb6615b3b516b1e1795ef8f6f21c15112  coreml/rightwayup-pico-n70s80-s70-fillmask-b1.mlpackage/Data/com.apple.CoreML/model.mlmodel
+53a1b76d34f27cb56e517077cf802cf4c5739f24119a6ce11a123b1d0a895baf  coreml/rightwayup-pico-n70s80-s70-fillmask-b1.mlpackage/Data/com.apple.CoreML/weights/weight.bin
+d47be8d6ea0922a1dcfbb4960aed8485fc420de02a5443473c2bb6e9fcebb0f3  coreml/rightwayup-pico-n70s80-s70-fillmask-b1.mlpackage/Manifest.json
+a32a7ae663e789334914faca54c527a200599da522eb7db3bb509c102678efa5  coreml/rightwayup-pico-n70s80-s70-fillmask-b16.mlpackage/Data/com.apple.CoreML/model.mlmodel
+9765291c225e7bb4081d3e2879ba3165b50f080f80add11176d7f71b9ab53827  coreml/rightwayup-pico-n70s80-s70-fillmask-b16.mlpackage/Data/com.apple.CoreML/weights/weight.bin
+480084deea959a877e37b786a0e0c05a56beeb1df5c5380ec0784e0ff0a2f154  coreml/rightwayup-pico-n70s80-s70-fillmask-b16.mlpackage/Manifest.json

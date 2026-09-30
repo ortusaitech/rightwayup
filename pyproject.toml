@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rightwayup"
+version = "1.0.0"
+description = "RightWayUp: full-circle image roll estimation with calibrated abstention, by ORTUS AI"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "ORTUS AI" }]
+requires-python = ">=3.9"
+dependencies = ["numpy>=1.23", "pillow>=9.4", "onnxruntime>=1.18", "huggingface_hub>=0.20"]
+keywords = ["image orientation", "rotation estimation", "upright", "cctv", "onnx", "computer vision"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Image Recognition",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://cheqit.ortusai.io/resources/rightwayup/"
+Source = "https://github.com/ortusaitech/rightwayup"
+"Model weights" = "https://huggingface.co/ortusai"
+Issues = "https://github.com/ortusaitech/rightwayup/issues"
+
+[project.scripts]
+rightwayup = "rightwayup.cli:main"
+
+[tool.setuptools]
+packages = ["rightwayup"]

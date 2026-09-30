@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use RightWayUp, please cite it as below."
+title: "RightWayUp: full-circle image roll estimation with calibrated abstention"
+type: software
+authors:
+  - name: "ORTUS AI"
+    website: "https://ortusai.io"
+repository-code: "https://github.com/ortusaitech/rightwayup"
+url: "https://cheqit.ortusai.io/resources/rightwayup/"
+license: Apache-2.0
+version: "1.0.0"
+date-released: "2026-09-30"
+keywords: [image orientation, rotation estimation, camera roll, abstention, CCTV, ONNX]

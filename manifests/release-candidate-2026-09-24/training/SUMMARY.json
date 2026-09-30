@@ -1,0 +1,172 @@
+{
+ "hybrid": {
+  "rows": 23249,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "diode",
+    "licence": "MIT",
+    "used_in_training": false,
+    "n": 96
+   },
+   {
+    "family": "diode",
+    "licence": "MIT",
+    "used_in_training": true,
+    "n": 16367
+   },
+   {
+    "family": "meva",
+    "licence": "CC BY 4.0",
+    "used_in_training": false,
+    "n": 1
+   },
+   {
+    "family": "meva",
+    "licence": "CC BY 4.0",
+    "used_in_training": true,
+    "n": 3199
+   },
+   {
+    "family": "poly_haven",
+    "licence": "CC0 assets; renders by ORTUS AI",
+    "used_in_training": false,
+    "n": 7
+   },
+   {
+    "family": "poly_haven",
+    "licence": "CC0 assets; renders by ORTUS AI",
+    "used_in_training": true,
+    "n": 3459
+   },
+   {
+    "family": "poly_haven_blender_direct_v2",
+    "licence": "CC0 assets; renders by ORTUS AI",
+    "used_in_training": true,
+    "n": 120
+   }
+  ]
+ },
+ "coco": {
+  "rows": 4096,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "coco",
+    "licence": "CC BY 2.0 (per image)",
+    "used_in_training": false,
+    "n": 13
+   },
+   {
+    "family": "coco",
+    "licence": "CC BY 2.0 (per image)",
+    "used_in_training": true,
+    "n": 4083
+   }
+  ]
+ },
+ "coco2": {
+  "rows": 9683,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "coco",
+    "licence": "CC BY 2.0 (per image)",
+    "used_in_training": false,
+    "n": 33
+   },
+   {
+    "family": "coco",
+    "licence": "CC BY 2.0 (per image)",
+    "used_in_training": true,
+    "n": 9650
+   }
+  ]
+ },
+ "pass": {
+  "rows": 300000,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "pass",
+    "licence": "CC BY 4.0",
+    "used_in_training": false,
+    "n": 4593
+   },
+   {
+    "family": "pass",
+    "licence": "CC BY 4.0",
+    "used_in_training": true,
+    "n": 295407
+   }
+  ]
+ },
+ "pass2": {
+  "rows": 300000,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "pass",
+    "licence": "CC BY 4.0",
+    "used_in_training": false,
+    "n": 4594
+   },
+   {
+    "family": "pass",
+    "licence": "CC BY 4.0",
+    "used_in_training": true,
+    "n": 295406
+   }
+  ]
+ },
+ "oi": {
+  "rows": 33275,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "oi",
+    "licence": "CC BY 2.0 (per image)",
+    "used_in_training": true,
+    "n": 33275
+   }
+  ]
+ },
+ "diode2": {
+  "rows": 2837,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "diode2",
+    "licence": "MIT",
+    "used_in_training": false,
+    "n": 13
+   },
+   {
+    "family": "diode2",
+    "licence": "MIT",
+    "used_in_training": true,
+    "n": 2824
+   }
+  ]
+ },
+ "meva2": {
+  "rows": 550,
+  "missing_flickr_attribution": 0,
+  "missing_licence_check_date": 0,
+  "by": [
+   {
+    "family": "meva2",
+    "licence": "CC BY 4.0",
+    "used_in_training": true,
+    "n": 550
+   }
+  ]
+ }
+}

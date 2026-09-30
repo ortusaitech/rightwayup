@@ -1,0 +1,135 @@
+{
+ "candidate": "rightwayup-v1.0-freeze-v2-gridfix",
+ "owner_go_ahead": "owner in chat, Tue 29 Sep 2026 ~10:50 AEST: 'We are now ready to freeze and we need the Pico.' Tier choice accepted earlier: 'OK, your suggestions make sense' (Max = M3-SOUP8, Fast = GF-SV3-kdM3, Nano = GF-SOUP-SV2).",
+ "stages": {
+  "nano": {
+   "ckpt": "/workspace/rotation-data/rotlab/runs/GF-SOUP-SV2/final.pt",
+   "canvas": 112,
+   "pool": "fill",
+   "sha256": "70590680d5fb12ab3aed0e796bf0c7d37c21e8f17860ad0401e086c220666bba"
+  },
+  "small": {
+   "ckpt": "/workspace/rotation-data/rotlab/runs/GF-SV3-kdM3/final.pt",
+   "canvas": 224,
+   "pool": "fill",
+   "sha256": "f317fa4cf92c553893148fc7e7e5a7fd1352e7b3b7e737b45bf5ecc526edef3c"
+  },
+  "large": {
+   "ckpt": "/workspace/rotation-data/rotlab/runs/M3-SOUP8/final.pt",
+   "canvas": 280,
+   "pool": null,
+   "sha256": "08dea345add0e89f8c8e2ba159e403fa9f19fa6b158aab1c1e2476f5d5e7d969"
+  }
+ },
+ "stage_inference": {
+  "fill": "rotlab.focus FocusNet plan 'fill' (letterbox-fill patch tokens dropped; checkpoint sinks 0, tol 1e-3) = the shipped fill-drop ONNX; scored by `python -m rotlab.focus eval CKPT --mode fill --canvases C --sets <final sets>` (gated by camp_final.check_score(sha, canvas, 'fill'))",
+  "null": "full-token RotNet; scored by `python -m rotlab.camp_eval CKPT --canvases C --sets <final sets>` (gated by camp_final.check_score(sha, canvas, None))",
+  "code_tree": "/workspace/code-final (campaign code + lead overlay); regression check 29 Sep: fresh_diode + fair re-scored from this tree equal the development stores exactly (3 stages, 3,990 predictions, max |dconf| 0)"
+ },
+ "route_threshold": 0.8,
+ "route_threshold_note": "legacy single-router field = Pro route; the released tiers (below) carry their own route thresholds",
+ "decoder": "argmax + local circular mean over +-10 bins (core.decode); conf = mass within +-10 deg",
+ "tiers": {
+  "nano": {
+   "name": "Nano (S @112, fill-drop)",
+   "stage": "nano",
+   "standard": 0.533,
+   "strict": 0.8
+  },
+  "fast": {
+   "name": "Fast (S @224, fill-drop)",
+   "stage": "small",
+   "standard": 0.628,
+   "strict": 0.735
+  },
+  "balanced": {
+   "name": "Balanced (S@224 -> L@280, ~10% routed)",
+   "stage": "small",
+   "large": "large",
+   "route": 0.628,
+   "standard": 0.692,
+   "strict": 0.748
+  },
+  "pro": {
+   "name": "Pro (S@224 -> L@280, ~20% routed)",
+   "stage": "small",
+   "large": "large",
+   "route": 0.8,
+   "standard": 0.729,
+   "strict": 0.729
+  },
+  "max": {
+   "name": "Max (L @280, every image)",
+   "stage": "large",
+   "standard": 0.726,
+   "strict": 0.726
+  }
+ },
+ "abstain": {
+  "rule": "answer iff conf >= threshold; routed images take the large stage's prediction and confidence; effective strict = max(standard, strict)",
+  "standard_definition": "answers ~90% of the calibration images (release final_stats.Tier t_cov90)",
+  "strict_definition": "lowest threshold with answered error rate <= 1% (calibration sets weighted equally)",
+  "calibration": "rotlab.calib meva_cal / poly_cal / oi_cal; route = small-stage confidence quantile at the 10% / 20% route share",
+  "sources": "pod /workspace/ops/thresholds-v2-M3.json (small GF-SV3-kdM3 fill, large M3-SOUP8) and /workspace/ops/thresholds-v2-nanoSV2.json (nano GF-SOUP-SV2 fill)",
+  "formats": "these are the PyTorch/FP32 thresholds; per-format thresholds (INT8 / FP16 / Core ML) are calibrated on the same calibration sets after the freeze and never on final sets"
+ },
+ "selection": "Candidates chosen on development panels only (grid-free dev, newval, five-seed, cue-free photos, R-LiViT dev, W panels) under research/grid-fix/PREREG.md; never on the final sets, which are unopened at freeze time.",
+ "frozen_utc": "2026-09-29T01:19:53Z",
+ "candidates": [
+  {
+   "role": "nano",
+   "ckpt": "/workspace/rotation-data/rotlab/runs/GF-SOUP-SV2/final.pt",
+   "sha256": "70590680d5fb12ab3aed0e796bf0c7d37c21e8f17860ad0401e086c220666bba",
+   "canvas": 112,
+   "pool": "fill"
+  },
+  {
+   "role": "small",
+   "ckpt": "/workspace/rotation-data/rotlab/runs/GF-SV3-kdM3/final.pt",
+   "sha256": "f317fa4cf92c553893148fc7e7e5a7fd1352e7b3b7e737b45bf5ecc526edef3c",
+   "canvas": 224,
+   "pool": "fill"
+  },
+  {
+   "role": "large",
+   "ckpt": "/workspace/rotation-data/rotlab/runs/M3-SOUP8/final.pt",
+   "sha256": "08dea345add0e89f8c8e2ba159e403fa9f19fa6b158aab1c1e2476f5d5e7d969",
+   "canvas": 280,
+   "pool": null
+  }
+ ],
+ "router": {
+  "kind": "max-mass threshold on small-stage confidence",
+  "route_threshold": 0.8
+ },
+ "comparators": {
+  "woehrer": {
+   "model": "/workspace/rotation-data/rotlab/release-onnx/incumbent/rotation_estimator_fp32.onnx",
+   "model_sha256": "5fd9a686f537a412996da6726193e43e980a13f1680a85f68c57fcd35715073e",
+   "data_sha256": "44d58a12051d6ec38a463bdcda4da114892341cbe33520e7137bb719e0b18870",
+   "adapter": "timm create_transform(224, bicubic, crop_pct=1.0); pred = -argmax (clockwise)"
+  }
+ },
+ "source_manifests": {
+  "coco_val2017.jsonl": "78b2fb3de6e733a54b72ee669f958812f8c738a87ac493439fa48e2cbb3490bd",
+  "oi_validation_r8000.jsonl": "a30bd8a8696fcdee4555392244414760dab82de17da2c012fae3242fab7510cc",
+  "rlivit.json": "102e9bfc42ea97324eab7ab1c5c16689af4137a71838faa3eb5372ae94613cbe",
+  "aalborg.json": "3ee10fb9809267ae47ebf9bc27b02c0710ad3300f5c0f8c1cff00fc71d8d3f6b"
+ },
+ "code_sha256": {
+  "core.py": "6c6dd25b0a5cf551ee202414b4f2d0565a13784c57f1be75ffe410dee1e58773",
+  "model.py": "5cfc2c999a6ab808423e55c53ddb099607ed4417bb6eacd186020b5822cc9bc8",
+  "evaluate.py": "60d6c4ba49a6f3df00b2fa92c741c14649deff74a0bde12c063e0047189c670f",
+  "camp_eval.py": "4d6d18c81d4b227f93b2df3db90773182be20617a787f8dc927786c5c5409891",
+  "camp_store.py": "cf539b820f06fca66085c0110cb4e47d38ac6c55d5fa0294a544828f3d4cf981",
+  "camp_newdata.py": "44355f49bb6ee8584e2fe05b61ef3e0135856ddc28ccc74abf0ce5e82267aa37",
+  "camp_rlivit.py": "49457f4f5ddb85ca1788f886bb9f2a034657564df24f71d50e516bcb84c29eb8",
+  "camp_aalborg.py": "94be50af2af07e6f21d48470648e7d63c5baf2fcf113ea4c68ae9d38f2026dc1",
+  "camp_incumbent.py": "6bc607275442e06c46dee3ed97412542af054d0ce8948fa36bf0458d17a1b644",
+  "camp_final.py": "a992bfdd1a1fb6b334bf0298b0725b42d00c0a9f56d1cca4c1619be56c9632ef",
+  "camp_analyze.py": "53b5f127e5cd31a7d223a90df79cfb456f3f7778f561ddfda14ff364c7c8ad3f",
+  "prep_sources.py": "b90b2c5de6a2e9a1f5123e0c281ed117ad1e5badb6fd02232cf46893ff7b2170",
+  "focus.py": "35a97380589eb64904096741cab3d5129006e5576f3a6696a995d0927214c023",
+  "model_x.py": "aadaee9bd6197fc288a701bfdff6a601ecbba60840d3356b85ad613052f86a45"
+ }
+}

@@ -1,0 +1,5 @@
+onnxruntime-gpu[cuda,cudnn]==1.22.0
+nvidia-cudnn-cu12==9.8.0.87
+tensorrt-cu12==10.9.0.34
+numpy
+psutil
