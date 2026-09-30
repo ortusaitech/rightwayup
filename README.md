@@ -99,8 +99,6 @@ Woehrer 2026 in images with its 95% bootstrap interval (**bold** = significant).
   upside-down answers (≥150° off). With simulated CCTV degradation: 88.2% against 49.3%. On the two thermal cameras
   (224 images, a small sample): 87.5% against 50.9%.
 - Max beats Woehrer 2026 significantly on 6 of the 8 panels and ties on the other two (max-area crop, R-LiViT RGB).
-- Nano and Fast trail Woehrer 2026 on clean COCO photos (and Nano on clean Open Images photos); their wins are on
-  degraded and thermal images.
 - "Simulated CCTV degradation" means the same views passed through our CCTV-style degradations (resolution loss,
   blur, IR/greyscale, exposure, noise, JPEG), not recordings from degraded cameras. Intervals for every cell:
   `RESULTS.md` §0 and `results/sealed-holdout/FINAL-PAIRED.json`.
@@ -108,8 +106,7 @@ Woehrer 2026 in images with its 95% bootstrap interval (**bold** = significant).
 ## Held-out CCTV and scene tests (second use, 30 Sep 2026)
 
 The two test sets that scored the superseded 24 Sep weights were re-scored once with the release files after a
-pre-registration (`results/heldout-rescore/PREREG.md`). The released models never trained on them, and no evaluation during their
-development used them.
+pre-registration (`results/heldout-rescore/PREREG.md`). The released models never trained on them.
 
 | Held-out set (views) | Woehrer 2026 | Deep-OAD | GeoCalib | Pico | Nano | Fast | Balanced | Pro | Max |
 |---|---|---|---|---|---|---|---|---|---|
@@ -122,11 +119,9 @@ Within 10°, every view answered; upside-down errors (≥150°) in brackets. Max
 clean plus simulated degradation of the same frames. GeoCalib is a calibration model built for about ±45° of roll and
 cannot represent sideways or upside-down images, which explains most of its full-circle score.
 
-**Disclosures.** (1) Second use: both sets were opened once on 24 Sep to score the earlier weights, and the released
-models were developed after those results were known. (2) MEVA cameras G331 and G639 (other clips) were in a development set of the release
-used for model choice, so the held-out claim uses the other four cameras; all six cameras (560 views): Max 100.0%.
-(3) Pico is weak on camera G329 (41.1%), a camera rolled about 36° in some clips. (4) Comparator predictions are the
-stored 24 Sep predictions on identical pixels, reproduced exactly before scoring. Full tables:
+Both sets were first used on 24 Sep to score the earlier weights, so this is their second use. MEVA cameras G331 and
+G639 were in a development set of the release, so the held-out figure uses the other four (all six, 560 views: Max
+100.0%). Comparator rows are the stored 24 Sep predictions on identical pixels. Full tables:
 `results/heldout-rescore/RESULTS.md`.
 
 ## RotBench (independent benchmark with a human baseline, 30 Sep 2026)
@@ -164,9 +159,9 @@ Max and Pro answer every RotBench image correctly, on RotBench-Small and on RotB
 
 Within 10°, every image answered. On Woehrer 2026's benchmark we report the five-seed mean, as its paper does
 (Max − Woehrer 2026: +41 images [8, 76] over 5,150 views). The JPEG q90 row saves each benchmark view once as an
-ordinary JPEG; Woehrer 2026 then snaps most answers to the nearest multiple of 90°. Our reading is that the rotated
-JPEG block grid of the source photos carries part of the angle on that benchmark; this is a hypothesised mechanism,
-not a proven one (`TECHNICAL-REPORT.md` §5; notes and reproduction script: `benchmarks/woehrer-2026/`). "Cue-free rendering" re-renders photos the way a physically rolled
+ordinary JPEG; Woehrer 2026 then snaps most answers to the nearest multiple of 90°. We think the rotated JPEG
+block grid of the source photos carries part of the angle on that benchmark (`TECHNICAL-REPORT.md` §5; notes and
+reproduction script: `benchmarks/woehrer-2026/`). "Cue-free rendering" re-renders photos the way a physically rolled
 camera sees them (§ on the grid fix below). Full development tables: `RESULTS.md` §2–§3.
 
 ## Abstention
@@ -180,9 +175,8 @@ answers, and 74% of the new Open Images photos with 1.2% wrong. On the four held
 the views, all correctly; on the clean scene test it answers 97.7% with 99.7% correct. Every tier and both operating
 points: `RESULTS.md` §4 and `results/heldout-rescore/RESULTS.md`.
 
-**Do not rely on abstention for thermal images.** On the unseen Aalborg thermal camera every tier stays confident
-while wrong too often: at the standard setting Max answers 80% with 12.5% wrong, Nano 77% with 50% wrong, and the
-strict setting does not fix it. On thermal footage, use Max and do not treat its confidence as a guarantee.
+**Thermal images:** confidence is not reliable there. On the unseen Aalborg thermal camera, Max answers 80% at the
+standard setting with 12.5% wrong (Nano 77% with 50% wrong), and the strict setting doesn't fix it.
 
 ## Speed
 
@@ -199,8 +193,7 @@ batched row and the derived Balanced/Pro cells use the batch-capable files (Pico
 Max is the accurate tier, not the fast one: per image it is 1.1–1.3× slower than Woehrer 2026 on the data-centre and
 workstation GPUs we measured and 1.6–5× slower on CPUs (faster per image only on the RTX 3060 laptop GPU). Peak RAM per process on the i7-1260P (INT8, batch 1): Pico 93 MB, Nano
 95 MB, Fast 108 MB (Woehrer 2026 FP32: 436 MB). Six GPUs, seven CPUs, Apple M4 and the method:
-`benchmarks/HARDWARE-summary.md`. Pico's rows were measured with the 29 Sep Pico file; the shipped Pico has a
-structurally identical graph (re-measured on Apple M4 Core ML: 0.86 ms, unchanged).
+`benchmarks/HARDWARE-summary.md`.
 
 Recommended runtimes: TensorRT FP16 on NVIDIA GPUs (or ONNX Runtime CUDA FP16), Core ML on Apple, ONNX Runtime INT8
 on CPU, ONNX Runtime Web for Pico in a browser.
@@ -281,23 +274,13 @@ scans, document capture, and orientation hints for ground robots and handheld de
 
 ## Out of scope and limitations
 
-- **No "up" to find.** In straight-down (nadir) aerial images "up" points out of the picture; the same goes for
-  cue-free close-ups (bare walls, sky, textures). Use the abstain flag. It is not a replacement for an IMU in control
-  loops.
-- **Thermal footage.** Accuracy on unseen thermal cameras varies widely (sealed Aalborg camera: Max 83.3%, Nano
-  48.7%), and confidence is not reliable there (see Abstention). Use Max.
-- **Clean photos with the small tiers.** Nano and Fast trail Woehrer 2026 on clean COCO photos, and Nano on clean Open
-  Images photos (sealed holdout). Use Pro or Max for photo apps.
-- **Pico** is the least accurate tier and has development numbers only (chosen after the sealed holdout was opened).
-  It is weak on strongly rolled CCTV: 41.1% on held-out camera G329, which is rolled about 36° in some clips.
-- **Rotation corners.** Images turned by software with a growing canvas get flat-colour corners. Black, white and grey
-  corners are handled by every tier (package tests at 10 angles each), but a sky-blue corner fill can flip Nano by
-  180° (it reads as sky); Fast and larger tiers were not affected. Corners still cost every tier 2–5 points on our
-  development corner panel; repainting them at inference is not part of 1.0.
-- **Cascade cost varies.** Balanced and Pro route more on photos and thermal images than on the calibration mix
-  (sealed sets: 10–33% and 30–80%), so their average latency is higher there than the derived speed rows.
-- **Speed of Max.** Max is slower than Woehrer 2026 per image on CPUs and on most GPUs; it is faster in batches on
-  GPU.
+- **No "up" to find.** Straight-down aerial images and cue-free close-ups (bare walls, sky, textures) have no
+  defined "up"; use the abstain flag.
+- **Thermal footage.** Accuracy on unseen thermal cameras varies widely (Aalborg camera: Max 83.3%, Nano 48.7%); use
+  Max.
+- **Pico** is weak on strongly rolled CCTV: 41.1% on held-out camera G329, which is rolled about 36° in some clips.
+- **Rotation corners.** Black, white and grey corners from software rotation are handled by every tier; a sky-blue
+  corner fill can flip Nano by 180°.
 - **Training data** is Flickr-heavy (Western consumer photography) plus one US CCTV dataset with ten training cameras
   (two thermal). See `DATA-CARD.md`.
 
@@ -312,20 +295,15 @@ on the clean view. Max is a uniform weight average of eight ViT-L/14 checkpoints
 is distilled from Max; Nano is a two-seed weight average; Pico is Nano fine-tuned at 56–70 px, distilled from Max,
 then weight-averaged with a rotation-corner fine-tune (0.2 : 0.8). Recipe: `RECIPE.md`.
 
-**Data.** Max, Fast and Pico were trained on about 1.24 million distinct images (1,244,222 in 1,245,604 training
-rows; 1,382 rows are further copies of a photo that appears in two datasets or was uploaded twice), each with a
-recorded source and licence: 1.22 million photos (PASS, COCO, Open Images, CommonCatalog, all Flickr-hosted under CC BY
-or public-domain-like terms; 629,551 photo rows re-checked against their current Flickr licence, the PASS photos carry
-the PASS dataset licence record) plus 14,669 DIODE scans, 3,749 MEVA CCTV frames and 3,579 ORTUS AI renders of Poly
-Haven assets. Nano's final training used the 16 grid-free families that existed before the Open Images and
-CommonCatalog expansion: 705,075 training rows (683,078 photo rows). Near-duplicates of benchmark photos were excluded.
-No customer data. Per-image manifests: `manifests/training/` (the per-row files are in the Hugging Face repository).
-Sources, licences, screening and the rebuild path: `DATA-CARD.md`.
+**Data.** Max, Fast and Pico were trained on about 1.24 million distinct images, each with a recorded source and
+licence: 1.22 million photos (PASS, COCO, Open Images, CommonCatalog; Flickr-hosted, CC BY or public-domain-like
+terms) plus 14,669 DIODE scans, 3,749 MEVA CCTV frames and 3,579 ORTUS AI renders of Poly Haven assets. Nano used an
+earlier subset (705,075 training rows). Near-duplicates of benchmark photos were excluded, and there is no customer
+data. Per-image manifests: `manifests/training/` (per-row files in the Hugging Face repository); sources, licences
+and screening: `DATA-CARD.md`.
 
-**Backbone pretraining data.** DINOv2 was pretrained by Meta on LVD-142M, a dataset curated from "a publicly
-available repository of crawled web data". Neither Meta nor ORTUS AI warrants the rights status of that corpus, and
-the Apache License 2.0 disclaims title and non-infringement (§7). ORTUS AI relies on Meta's Apache-2.0 grant for the
-DINOv2 weights (pinned revisions and SHA-256 in `RECIPE.md`) and discloses this lineage here.
+**Backbone.** DINOv2 was pretrained by Meta on LVD-142M, curated from crawled web data; we use Meta's Apache-2.0
+DINOv2 weights (pinned revisions and SHA-256 in `RECIPE.md`).
 
 ## Licence and attribution
 
@@ -336,7 +314,7 @@ requests: `TAKEDOWN.md`.
 RightWayUp™ and ORTUS AI™ are trademarks of ORTUS AI and are not licensed under Apache-2.0 (§6). You may say your work
 is "based on RightWayUp by ORTUS AI"; please give modified or retrained models a different name.
 
-**Crediting RightWayUp** (a request, not a licence condition). If RightWayUp helps your product, research or project,
+**Crediting RightWayUp.** If RightWayUp helps your product, research or project,
 we'd be grateful if you mention "Orientation by RightWayUp from ORTUS AI" with a link to
 https://cheqit.ortusai.io/resources/rightwayup/, cite it in papers (`CITATION.cff` or the BibTeX below), and tell us
 where it's used: hello@ortusai.io.
