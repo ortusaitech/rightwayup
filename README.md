@@ -11,6 +11,9 @@
 [Weights](https://huggingface.co/ortusai/rightwayup) ·
 [PyPI](https://pypi.org/project/rightwayup/) · Apache-2.0, commercial use allowed
 
+**Official sources:** the four links above and the ORTUS AI website, [ortusai.io](https://ortusai.io), are the only
+official RightWayUp sources. Other websites and apps that use RightWayUp are run independently of ORTUS AI.
+
 RightWayUp estimates how far an image is rotated from upright, over the full 360° at 1° resolution, from a single
 image. It returns the angle, a confidence score and an abstain flag, and it can write a corrected copy. The abstain
 thresholds were fixed on calibration data only, separately for every file format. It runs on CPUs, NVIDIA GPUs,
