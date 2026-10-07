@@ -2,6 +2,10 @@
 
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). The record itself is unchanged.
+
 Written 30 Sep 2026 14:23 AEST, **before any v2 prediction on these sets**. Owner approval in chat, 30 Sep ~14:20 AEST
 ("Yes, let's do all that before stopping the pod"), answering the pending A9 decision (claims register v2).
 

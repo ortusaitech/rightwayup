@@ -1,4 +1,4 @@
-# rotlab/ provenance: SHA-256, file, origin. Files identical to the freeze scoring code (FROZEN.json): camp_aalborg.py, camp_analyze.py, camp_eval.py, camp_final.py, camp_incumbent.py, camp_newdata.py, camp_rlivit.py, camp_store.py, core.py, evaluate.py, prep_sources.py
+# rotlab/ provenance: SHA-256, file, origin. Files identical to the freeze scoring code (FROZEN.json): camp_aalborg.py, camp_analyze.py, camp_eval.py, camp_final.py, camp_incumbent.py, camp_newdata.py, camp_rlivit.py, camp_store.py, evaluate.py, prep_sources.py
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  __init__.py  pico-tree
 c36344f581b6432d03859016ea3a55b2457ef96eafc847098e758984999da33b  bench.py  release tooling (24 Sep 2026)
 0b65180bcdeeaf5d062757ecda2264f318848e493c528f1cbf25ae2ad84257a4  bench_report.py  release tooling (24 Sep 2026)
@@ -22,7 +22,7 @@ dfaf34f88fe1f7f92b18b6e0244ad0ea2ea1e13764310c81d32a509d8e8db7fb  cascade.py  re
 079fd7a8bd40bc8a09cdfdbbbd139dadf98a1b5c7cb56f10142de5c102049660  check_render.py  release tooling (24 Sep 2026)
 957e308ff82c768c499486b0a1a6db3f5f0b7bcf1f5d61c5fdd55cef39a8ccac  coco_expand.py  release tooling (24 Sep 2026)
 0f2499acba1e1f69785ae96dd41d605399f9f2a11c4ce9907b374c756666903b  competitors.py  release tooling (24 Sep 2026)
-6c6dd25b0a5cf551ee202414b4f2d0565a13784c57f1be75ffe410dee1e58773  core.py  pico-tree
+6404fb0fbc9c705c7c82706cfeae4513d82e44656430b2a2165847aee94d4c50  core.py  pico-tree (attribution comment added: code adapted from maxwoe/image-rotation-angle-estimation (https://github.com/maxwoe/image-rotation-angle-estimation, commit e4e35610775fbb08f3f27641e8027d14b1498395), MIT)
 bbf1d3c493941b592c42fb1a84c05d0790576f7e65926f26430d0c02843e1a68  coreml_export.py  release tooling (24 Sep 2026)
 b69fdaed76131e5848bb5c7a09490dbeec940d0279f37b1974fe7148f53a46e9  corner_panel.py  pico-tree
 64fa10bdb7286f2ccecfc2c405645eb87213b535c421430191760363f2efdfd8  cornerfill.py  pico-tree

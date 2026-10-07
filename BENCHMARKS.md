@@ -10,8 +10,8 @@ Metric: share of images whose predicted rotation is within **10°** of the truth
 answered unless stated. Also reported: near-opposite errors (≥ 150°, "upside-down" mistakes) and paired differences
 with 95% bootstrap intervals.
 
-"Woehrer 2026" is MambaOut-base CGD (arXiv:2603.25351, MIT), the published state of the art on the COCO rotation
-benchmark. It is not the strongest other model on every panel: on the held-out CCTV cameras Deep-OAD, the next-best
+"Woehrer 2026" is MambaOut-base CGD by Maximilian Woehrer ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351), [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence), the
+published state of the art on the COCO rotation benchmark. It is not the strongest other model on every panel: on the held-out CCTV cameras Deep-OAD, the next-best
 open model we tested, scores 82.4%. "Degraded" always means our **simulated** CCTV degradation (resolution loss,
 blur, IR/greyscale, exposure, noise, JPEG), applied with a fixed seed to the same views as the clean copy; no degraded
 view is a recording from a degraded camera.
@@ -52,6 +52,9 @@ ranks 4000–7999 (6,692 views), each image clean + degraded, weighted equally.
 | As published, each view saved once as JPEG q90, five-seed mean | 30.2% | **98.4%** | 96.4% | 95.9% |
 | Neutral 4:3 crop, one angle draw (fair photos) | 97.2% | **99.0%** | 96.9% | 94.8% |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14),
+Fast and Nano 23M each (ViT-S/14). Max and Fast were trained on about 1.24 million images, Nano on 705,075.
+
 - **Seeds.** Woehrer 2026's paper reports the five-seed mean (98.0%). The 98.6% we quoted earlier was seed 0 of our
   rebuild, the best of its five seeds there: our choice of figure, not the paper's.
 - **JPEG.** One JPEG q90 save of each view drops Woehrer 2026 from 98.0% to 30.2%, and its answers snap to multiples of
@@ -66,6 +69,8 @@ ranks 4000–7999 (6,692 views), each image clean + degraded, weighted equally.
 
 These are properties of a common protocol, not flaws of one author's work. We never train on the angle-dependent crop,
 store training images losslessly, and report the benchmark both ways.
+
+Response from the author of Woehrer 2026, quoted verbatim: [`benchmarks/woehrer-2026/BENCHMARK-NOTES.md`](benchmarks/woehrer-2026/BENCHMARK-NOTES.md#response-from-the-author-of-woehrer-2026).
 
 ## Sealed final holdout (frozen weights, opened once, scored once, 29 Sep 2026)
 
@@ -86,6 +91,10 @@ Upside-down errors (≥150°), Woehrer 2026 vs Max: 40 vs 4 (new COCO), 145 vs 2
 thermal), 37 vs 25 (Aalborg). Balanced / Pro routed 10–33% / 30–80% of these images to Max. Pico was chosen after the
 holdout was opened and has no sealed-holdout numbers.
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max and Fast were
+trained on about 1.24 million images, Nano on 705,075.
+
 ## Held-out CCTV and scene sets (24 Sep sets, second use, 30 Sep 2026)
 
 | Held-out set (views) | Woehrer 2026 | Deep-OAD | GeoCalib | Pico | Nano | Fast | Balanced | Pro | Max |
@@ -101,6 +110,10 @@ development set of the release, so the held-out claim uses the other four camera
 predictions are the stored 24 Sep predictions on identical pixels, reproduced exactly. GeoCalib is built for about
 ±45° of roll; its full-circle numbers reflect scope. Per-camera and per-group rows, strict point and abstention:
 `results/heldout-rescore/RESULTS.md`.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ## Development test sets (full tables in `RESULTS.md` §2–§3)
 
@@ -119,6 +132,10 @@ rolled camera never has; the cue-free rows replace it as the photo measure, and 
 headline photo number. We think Woehrer 2026's low Common and Fresh DIODE scores come mostly from simulated CCTV
 degradation, indoor close-ups and non-photographic content that its photo-only training did not cover (our inference,
 not a controlled test).
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ## RotBench (independent benchmark, official protocol; scored once, 30 Sep 2026)
 
@@ -153,6 +170,10 @@ views, reproduced exactly. Naming a model here implies no endorsement by its aut
 
 Max and Pro answer every RotBench image correctly (1.00 at every rotation on both splits) with no upside-down answers,
 above the published human baseline on RotBench-Small (0.99 / 0.99 / 0.99 / 0.97), by 1–3 points on 50 photos. Per-rotation tables for both splits and variants, within-10° shares: `results/rotbench/RESULTS.md`.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ## Abstention and hardware
 

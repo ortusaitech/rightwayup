@@ -2,6 +2,15 @@
 
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). Model size and training data, for
+> every comparison in this record: Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M
+> (ViT-L/14); Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images.
+> Max, Fast and Pico were trained on about 1.24 million images, Nano on 705,075. The 24 Sep release candidate's Max
+> ran a 23M ViT-S/14 and, on part of the images, a 306M ViT-L/14, trained on 664,340 images. The results are
+> unchanged.
+
 **Scored once, 30 Sep 2026 ~14:30 AEST**, with the staged release files (one-image ONNX FP32, ONNX Runtime CUDA) and the
 release package, after the pre-registration (`PREREG.md`, written 14:23). Predictions `v2-predictions.npz` (sha256
 `85b8537e…96eb7`); comparators are the stored 24 Sep predictions on identical pixels (reproduced exactly below).

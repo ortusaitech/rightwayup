@@ -35,23 +35,28 @@ and `benchmarks/HARDWARE-summary.md`; method and caveats in full: `TECHNICAL-REP
 ## Tiers
 
 All six tiers ship in one Hugging Face repository, [ortusai/rightwayup](https://huggingface.co/ortusai/rightwayup).
+The reference row is Woehrer 2026 (MambaOut-base CGD by Maximilian Woehrer,
+[arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+[code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence).
 
-| Tier | What runs | Input | Sent to Max (calibration) | New COCO photos¹ (2,201) | New Open Images photos¹ (2,505) | Unseen CCTV² (380) | GPU³ | CPU⁴ |
-|---|---|---|---|---|---|---|---|---|
-| **Pico** | ViT-S/14, fill-drop | 70 px | — | not in sealed test⁵ | not in sealed test⁵ | 80.0% | 0.55 ms | 3.21 ms |
-| **Nano** | ViT-S/14, fill-drop | 112 px | — | 87.3% | 75.5% | 92.6% | 0.55 ms | 7.73 ms |
-| **Fast** | ViT-S/14 (distilled from Max), fill-drop | 224 px | — | 90.4% | 84.5% | 97.9% | 0.68 ms | 29.7 ms |
-| **Balanced** | Fast → Max cascade | 224 → 280 px | ~10% | 94.0% | 89.1% | 98.4% | 1.77 ms | 62.2 ms |
-| **Pro** | Fast → Max cascade | 224 → 280 px | ~20% | 95.5% | 90.5% | 99.2% | 2.29 ms | 94.8 ms |
-| **Max** | ViT-L/14 on every image | 280 px | every image | **95.6%** | **90.7%** | **100.0%** | 5.19 ms | 326 ms |
-| *Woehrer 2026 (reference)* | MambaOut-base | 224 px | — | 93.6% | 83.8% | 75.0% | 4.04 ms | 161 ms (FP32) |
+| Tier | What runs | Parameters⁶ | Training images⁶ | Input | Sent to Max (calibration) | New COCO photos¹ (2,201) | New Open Images photos¹ (2,505) | Unseen CCTV² (380) | GPU³ | CPU⁴ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| **Pico** | ViT-S/14, fill-drop | 23M | 1.24 M | 70 px | — | not in sealed test⁵ | not in sealed test⁵ | 80.0% | 0.55 ms | 3.21 ms |
+| **Nano** | ViT-S/14, fill-drop | 23M | 0.71 M | 112 px | — | 87.3% | 75.5% | 92.6% | 0.55 ms | 7.73 ms |
+| **Fast** | ViT-S/14 (distilled from Max), fill-drop | 23M | 1.24 M | 224 px | — | 90.4% | 84.5% | 97.9% | 0.68 ms | 29.7 ms |
+| **Balanced** | Fast → Max cascade | 23M + 306M | 1.24 M | 224 → 280 px | ~10% | 94.0% | 89.1% | 98.4% | 1.77 ms | 62.2 ms |
+| **Pro** | Fast → Max cascade | 23M + 306M | 1.24 M | 224 → 280 px | ~20% | 95.5% | 90.5% | 99.2% | 2.29 ms | 94.8 ms |
+| **Max** | ViT-L/14 on every image | 306M | 1.24 M | 280 px | every image | **95.6%** | **90.7%** | **100.0%** | 5.19 ms | 326 ms |
+| *Woehrer 2026 (reference)* | MambaOut-base | 83M | COCO 2017, ~118k images | 224 px | — | 93.6% | 83.8% | 75.0% | 4.04 ms | 161 ms (FP32) |
 
 Within 10°, every image answered. ¹ Sealed final holdout, opened once after the weights were frozen and scored once
 (section below). ² Four MEVA CCTV cameras incl. a thermal one, held out since 24 Sep and re-used once for the release
 (second use; disclosures below). ³ One image (batch 1), NVIDIA RTX PRO 4500, TensorRT FP16; Pico, Nano and Fast with their
 one-image files; Balanced and Pro derived at the 10% / 20% calibration route share. ⁴ One image, laptop Intel Core
 i7-1260P, ONNX Runtime INT8, 4 threads (Woehrer 2026: FP32). ⁵ Pico was chosen after the sealed holdout had been
-opened; it has development numbers only.
+opened; it has development numbers only. ⁶ Parameters counted from the released files (Max 305.8M; Pico, Nano and
+Fast 22.7–22.8M) and from Woehrer 2026's public checkpoint (82.8M). Training images: about 1.24 million distinct
+images for Max, Fast and Pico and 705,075 for Nano (`DATA-CARD.md`); Woehrer 2026 was trained on COCO 2017 (about 118k training images).
 
 **Fill-drop:** the small models (Pico, Nano, Fast) drop the letterbox padding tokens before the transformer, so a
 non-square image costs less. **Cascade:** Balanced and Pro run Fast on every image and pass the least-confident ones
@@ -108,10 +113,16 @@ Woehrer 2026 in images with its 95% bootstrap interval (**bold** = significant).
 | R-LiViT traffic camera, thermal (74) | 37.8% | **95.9% (+43)** | **95.9% (+43)** | **95.9% (+43)** | **90.5% (+39)** | **74.3% (+27)** |
 | Aalborg thermal camera (150) | 57.3% | **83.3% (+39 [+24, +54])** | **78.0% (+31 [+16, +46])** | **68.7% (+17 [+2, +32])** | 61.3% (+6 [−8, +20]) | 48.7% (−13 [−29, +3]) |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max and Fast were
+trained on about 1.24 million images, Nano on 705,075.
+
 - On the 4,706 new photos (COCO + Open Images), Max scores 93.0% against 88.4% for Woehrer 2026, with 33 against 185
   upside-down answers (≥150° off). With simulated CCTV degradation: 88.2% against 49.3%. On the two thermal cameras
   (224 images, a small sample): 87.5% against 50.9%.
 - Max beats Woehrer 2026 significantly on 6 of the 8 panels and ties on the other two (max-area crop, R-LiViT RGB).
+  Max has 306M parameters and was trained on about 1.24 million images; Woehrer 2026 has 83M and was trained on
+  COCO 2017 (about 118k training images).
 - "Simulated CCTV degradation" means the same views passed through our CCTV-style degradations (resolution loss,
   blur, IR/greyscale, exposure, noise, JPEG), not recordings from degraded cameras. Intervals for every cell:
   `RESULTS.md` §0 and `results/sealed-holdout/FINAL-PAIRED.json`.
@@ -131,6 +142,10 @@ Within 10°, every view answered; upside-down errors (≥150°) in brackets. Max
 (four cameras) and +806 [+754, +858] (clean test); Max − Deep-OAD: +67 [+52, +82] and +459 [+413, +506]. Views are
 clean plus simulated degradation of the same frames. GeoCalib is a calibration model built for about ±45° of roll and
 cannot represent sideways or upside-down images, which explains most of its full-circle score.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 Both sets were first used on 24 Sep to score the earlier weights, so this is their second use. MEVA cameras G331 and
 G639 were in a development set of the release, so the held-out figure uses the other four (all six, 560 views: Max
@@ -157,6 +172,10 @@ Max and Pro answer every RotBench image correctly, on RotBench-Small and on RotB
 0.97 mean, Deep-OAD 0.93), with no upside-down answers. On RotBench-Small that is above the published human baseline
 (0.99 / 0.99 / 0.99 / 0.97), by 1–3 points on 50 photos. All rows and splits: `results/rotbench/RESULTS.md`.
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
+
 ## Development results (used for model choice; Pico included)
 
 | Test (images) | Woehrer 2026 | Max | Pro | Balanced | Fast | Nano | Pico |
@@ -176,6 +195,12 @@ ordinary JPEG; Woehrer 2026 then snaps most answers to the nearest multiple of 9
 block grid of the source photos carries part of the angle on that benchmark (`TECHNICAL-REPORT.md` §5; notes and
 reproduction script: `benchmarks/woehrer-2026/`). "Cue-free rendering" re-renders photos the way a physically rolled
 camera sees them (§ on the grid fix below). Full development tables: `RESULTS.md` §2–§3.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
+
+Response from the author of Woehrer 2026, quoted verbatim: [`benchmarks/woehrer-2026/BENCHMARK-NOTES.md`](benchmarks/woehrer-2026/BENCHMARK-NOTES.md#response-from-the-author-of-woehrer-2026).
 
 ## Abstention
 
@@ -301,7 +326,7 @@ scans, document capture, and orientation hints for ground robots and handheld de
 
 DINOv2 backbones (Apache-2.0, Meta) fully fine-tuned with layer-wise learning-rate decay; a 360-bin head with a
 circular-Gaussian soft-target loss; random 0–360° rotations with angle-independent crops (the angle-leaking max-area
-crop is never used for training); simulated CCTV-style degradations. For the release every tier was retrained on grid-free
+crop is never used for training); simulated CCTV-style degradations. RightWayUp's output head (360 one-degree bins trained against a circular Gaussian soft target, σ = 6°) follows the CGD formulation of Woehrer (2026, arXiv:2603.25351), whose comparison of circular-aware methods and released model (our earlier production model and comparator) guided this choice; the circular Gaussian target originates with Xu et al. (2023, Electronics 12(15):3265). Our implementation, backbone and training are our own. For the release every tier was retrained on grid-free
 data: lossless 448-px training images re-fetched from the original sources, views rendered with a 1.5× output
 downscale (the way a camera sees a rolled scene), decoys and content-free probes, and knowledge distillation from Max
 on the clean view. Max is a uniform weight average of eight ViT-L/14 checkpoints (four seeds, two stages each); Fast

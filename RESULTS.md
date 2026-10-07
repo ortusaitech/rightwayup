@@ -3,7 +3,7 @@
 Every release document, model card, post and the paper takes figures from this file. Models: the released grid-fix
 tiers (`FREEZE.md`; FROZEN.json `5caf3220…`) plus Pico (added after the freeze, see §1). Section 0 is the sealed final
 holdout, opened once after the freeze and scored once; sections 2–4 are development panels (used for selection).
-Woehrer 2026 is scored on identical images. Sources: `results/sealed-holdout/FINAL-RESULTS.json` and
+Woehrer 2026 (MambaOut-base CGD by Maximilian Woehrer, [arXiv:2603.25351](https://arxiv.org/abs/2603.25351), [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence) is scored on identical images. Sources: `results/sealed-holdout/FINAL-RESULTS.json` and
 `results/sealed-holdout/FINAL-PAIRED.json` (sealed), the development prediction stores (development; internal), `benchmarks/HARDWARE-summary.md`
 (speed), `FREEZE.md` (thresholds, per-format addendum).
 
@@ -23,6 +23,10 @@ interval (10,000 resamples); **bold** = significant.
 | R-LiViT traffic camera, thermal (74) | 37.8% | **95.9% (+43 [+34, +52])** | **95.9% (+43 [+34, +52])** | **95.9% (+43 [+34, +52])** | **90.5% (+39 [+30, +48])** | **74.3% (+27 [+17, +37])** |
 | Aalborg thermal camera (150) | 57.3% | **83.3% (+39 [+24, +54])** | **78.0% (+31 [+16, +46])** | **68.7% (+17 [+2, +32])** | 61.3% (+6 [-8, +20]) | 48.7% (-13 [-29, +3]) |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max and Fast were
+trained on about 1.24 million images, Nano on 705,075.
+
 - Upside-down errors (≥150°), every image answered, Woehrer 2026 vs Max: New COCO photos 40 vs 4; New COCO photos, max-area crop 36 vs 5; New COCO photos, CCTV-degraded 78 vs 9; New Open Images photos 145 vs 29; New Open Images, CCTV-degraded 173 vs 24; R-LiViT traffic camera, RGB 1 vs 0; R-LiViT traffic camera, thermal 33 vs 0; Aalborg thermal camera 37 vs 25.
 - Routed share on these sets (Balanced / Pro): New COCO photos 11% / 32%; New COCO photos, max-area crop 10% / 30%; New COCO photos, CCTV-degraded 13% / 34%; New Open Images photos 27% / 50%; New Open Images, CCTV-degraded 33% / 55%; R-LiViT traffic camera, RGB 15% / 58%; R-LiViT traffic camera, thermal 31% / 80%; Aalborg thermal camera 26% / 55%.
 - Pico was chosen after the holdout was opened and is not part of this evaluation (development numbers only, §2).
@@ -41,6 +45,10 @@ Within 10°, every view answered; (≥150° errors). \*The release candidate's M
 (100% / 100% / 100% / 95.5% on 90 / 90 / 90 / 110 views = 375 / 380). Max − Deep-OAD: +67 [+52, +82] (MEVA 4 cameras), +459 [+413, +506]
 (clean test). With the standard threshold Max answers 99.7% of the 380 MEVA views, all correct, and 97.7% of the clean
 test with 99.7% correct.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M (ViT-L/14)
+and was trained on about 1.24 million images. The release candidate's Max (24 Sep) ran a 23M ViT-S/14 and, on part of
+the images, a 306M ViT-L/14, trained on 664,340 images.
 
 Disclosures: (1) second use: both sets were opened once on 24 Sep to score the release candidate, and the released models were developed after those
 results were known; the released models never trained on them and never scored them before today. (2) MEVA cameras G331 and G639 (other
@@ -88,6 +96,11 @@ Source: `results/rotbench/RESULTS.md` (pre-registered; scored once on 30 Sep 202
 | Pro | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 98.8% | 0 |
 | **Max** | 1.00 | 1.00 | 1.00 | 1.00 | 1.00 | 98.9% | 0 |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075. The release candidate's Max (24 Sep) ran a 23M
+ViT-S/14 and, on part of the images, a 306M ViT-L/14, trained on 664,340 images.
+
 ## 1. The tiers
 
 | Tier | Model | Input | Routing (calibration data only) | Abstain if confidence < (standard / strict; PyTorch = FP32 reference) |
@@ -101,6 +114,9 @@ Source: `results/rotbench/RESULTS.md` (pre-registered; scored once on 30 Sep 202
 
 - All models were retrained on grid-free data (Max, Fast and Pico: 1,245,604 images; Nano: 705,075; `DATA-CARD.md`) so they no longer read the JPEG-grid
   and interpolation cue; every shipped file passes the grid check (C1) in its own runtime (§7).
+- Parameters, counted from the released files: Max 305.8M (ViT-L/14 at 280 px with the 360-bin head); Fast 22.8M, Nano
+  22.7M and Pico 22.7M (ViT-S/14). Woehrer 2026: 82.8M (its public checkpoint `cgd_mambaout_base_coco2017.ckpt`),
+  trained on COCO 2017 (about 118k training images).
 - Files per model: ONNX FP32 / FP16 / INT8; Nano, Fast and Pico also as batch-capable ONNX (same answers, any batch size);
   Core ML (batch 1 and 16); Pico also as full-token ONNX for web browsers. Each format has its own calibrated thresholds
   (`FREEZE.md` addendum; Pico: `results/sealed-holdout/thresholds-pico-s80.json`).
@@ -126,9 +142,14 @@ Source: `results/rotbench/RESULTS.md` (pre-registered; scored once on 30 Sep 202
 | Fair photos (1,030) | 97.2% | 99.0% | 98.8% | 98.5% | 96.9% | 94.8% | 91.9% |
 | Open Images photos, old panel (3,345) | 81.6% | 91.2% | 90.8% | 89.3% | 83.9% | 74.7% | 68.8% |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
+
 - The old Open Images panel rewarded the JPEG-grid cue (digitally rotated images keep the original pixel grid); the
   cue-free realistic-photo rows replace it as the honest photo measure. The sealed Open Images holdout (§0) is the
   headline photo number.
+- Response from the author of Woehrer 2026, quoted verbatim: [`benchmarks/woehrer-2026/BENCHMARK-NOTES.md`](benchmarks/woehrer-2026/BENCHMARK-NOTES.md#response-from-the-author-of-woehrer-2026).
 
 ## 3. Robustness to CCTV degradation (within 10°)
 
@@ -140,6 +161,10 @@ Source: `results/rotbench/RESULTS.md` (pre-registered; scored once on 30 Sep 202
 | Aalborg thermal camera (150) (sealed) | 57.3% | 83.3% | 78.0% | 68.7% | 61.3% | 48.7% |
 | Woehrer 2026's benchmark, JPEG q90 (development) | 30.2% | 98.4% | 98.2% | 97.5% | 96.4% | 95.9% |
 | Realistic photos, camera JPEG (development) | 23.2% | 81.1% | 80.9% | 79.2% | 74.8% | 73.9% |
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max and Fast were
+trained on about 1.24 million images, Nano on 705,075.
 
 ## 4. Abstention on the sealed holdout (thresholds fixed on calibration data, then applied unchanged)
 
@@ -221,7 +246,8 @@ Strict operating point (≤1% wrong on calibration; effective strict = max(stand
 ## 7. What we do not claim
 
 - That Nano or Fast beat Woehrer 2026 on clean photos: they trail it on clean COCO (and Nano on clean Open Images);
-  their wins are on degraded CCTV and thermal.
+  their wins are on degraded CCTV and thermal. Nano and Fast have 23M parameters each and were trained on 705,075 and
+  about 1.24 million images; Woehrer 2026 has 83M and was trained on COCO 2017 (about 118k training images).
 - A win on the max-area crop or R-LiViT RGB sealed panels (ties).
 - That Max is faster than Woehrer 2026 per single image on CPUs (it is 1.6–5× slower) or on most GPUs (1.1–1.3×).
 - Sealed-holdout numbers for Pico (development numbers only).

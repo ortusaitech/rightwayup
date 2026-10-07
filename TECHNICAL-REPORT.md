@@ -4,7 +4,7 @@ ORTUS AI, 30 September 2026. This report is the detailed companion to `MODEL-CAR
 models were trained and evaluated, including every caveat and every deviation from our pre-registered plans. It is
 the closest thing to a paper we publish for this release. Every number cites its source record (§12).
 
-Abbreviations: **W** = Woehrer 2026 (MambaOut-base CGD, arXiv:2603.25351, code and weights MIT), the published state
+Abbreviations: **W** = Woehrer 2026 (MambaOut-base CGD by Maximilian Woehrer, [arXiv:2603.25351](https://arxiv.org/abs/2603.25351), [code](https://github.com/maxwoe/image-rotation-angle-estimation); code and weights MIT), the published state
 of the art on the COCO rotation benchmark. **Within 10°** = share of images whose predicted clockwise rotation is
 within 10° of the truth (circular error), every image answered unless stated. **≥150°** = near-opposite
 ("upside-down") errors. **pp** = percentage points. Brackets after a difference are 95% bootstrap intervals.
@@ -28,7 +28,9 @@ within 10° of the truth (circular error), every image answered unless stated. *
 
 - Six tiers (Pico, Nano, Fast, Balanced, Pro, Max) built from three DINOv2 checkpoints: a ViT-L/14 at 280 px (Max),
   a ViT-S/14 at 224 px (Fast) and a ViT-S/14 at 112 px (Nano), plus Pico, a ViT-S/14 at 70 px chosen after the freeze.
-  Balanced and Pro are Fast → Max cascades routing about 10% / 20% of calibration images.
+  Balanced and Pro are Fast → Max cascades routing about 10% / 20% of calibration images. Max has 306M parameters
+  and the ViT-S/14 models 23M each; Max, Fast and Pico were trained on about 1.24 million images, Nano on 705,075
+  (§2, §3). W has 83M parameters and was trained on COCO 2017 (about 118k training images).
 - Before the release we found that our earlier models read part of the angle from traces of digital rotation (the
   source photo's rotated JPEG block grid and the rotated spectrum of resampled pixels), which a physically rolled
   camera never shows. We rebuilt the training data losslessly, changed the rendering, added probes and penalties and
@@ -37,7 +39,7 @@ within 10° of the truth (circular error), every image answered unless stated. *
 - Sealed final holdout (8 panels; frozen first, opened once, scored once): on 4,706 new COCO and Open Images photos Max
   scores 93.0% vs W 88.4%, with 33 vs 185 upside-down errors; with simulated CCTV degradation 88.2% vs 49.3%; on two
   unseen thermal cameras (224 images) 87.5% vs 50.9%. Max is significantly better than W on 6 of 8 panels and ties on
-  the other two. Nano and Fast trail W on clean COCO photos (§7.1).
+  the other two (Max: 306M parameters, about 1.24 million training images; W: 83M, COCO 2017, about 118k training images). Nano and Fast trail W on clean COCO photos (§7.1).
 - On four held-out CCTV cameras, re-used once for the release (second use, disclosed), Max scores 100.0% (380 views) vs W 75.0%
   and Deep-OAD 82.4% (§7.2).
 - On RotBench, an independent benchmark with a human baseline, Max and Pro score 1.00 at every rotation on both splits
@@ -56,7 +58,13 @@ within 10° of the truth (circular error), every image answered unless stated. *
 **Network** (`rotlab/model.py` `RotNet`, `rotlab/model_x.py`, `rotlab/focus.py`). DINOv2 backbone → concat(CLS, mean
 patch token) → LayerNorm → Linear(·, 1024) → GELU → Linear(1024, 360) → softmax. Pinned backbones:
 `vit_small_patch14_dinov2.lvd142m` (revision `4610ca14…`, weights SHA-256 `04d27f34…`) and
-`vit_large_patch14_dinov2.lvd142m` (revision `4741e1ca…`, `0424a5d1…`), full hashes in `RECIPE.md`.
+`vit_large_patch14_dinov2.lvd142m` (revision `4741e1ca…`, `0424a5d1…`), full hashes in `RECIPE.md`. Parameters,
+counted from the released files: Max 305.8M; Fast 22.8M, Nano 22.7M and Pico 22.7M. W's public checkpoint has 82.8M.
+
+**Head and loss.** RightWayUp's output head (360 one-degree bins trained against a circular Gaussian soft target, σ =
+6°) follows the CGD formulation of Woehrer (2026, arXiv:2603.25351), whose comparison of circular-aware methods and
+released model (our earlier production model and comparator) guided this choice; the circular Gaussian target
+originates with Xu et al. (2023, Electronics 12(15):3265). Our implementation, backbone and training are our own.
 
 **Input and decoding.** The image is letterboxed (aspect kept, bicubic) onto a square canvas of fill colour RGB
 (124, 116, 104) and ImageNet-normalised. The answer is the argmax bin refined by the probability-weighted mean offset
@@ -257,6 +265,10 @@ enough; 1.5× downscaled copies scored within ±5 views).
 **W on the same cue-free photos:** 77.64% clean and 23.22% with camera JPEG. The pre-fix Max candidate did **not** beat W
 on camera-like clean photos (76.02%, −1.62 [−3.99, 0.81]); the grid-fix arm-A soup did (83.30%, +5.66 [3.50, 7.76]).
 
+*Model size and training data:* W has 83M parameters and was trained on COCO 2017 (about 118k training images). The Max candidates in this section
+are ViT-L/14 (306M parameters) and the small models ViT-S/14 (23M), trained on the sources of §3 (up to about 1.24
+million images) or, before the grid fix, on their JPEG-stored predecessors.
+
 **C1 is sensitive to seeds on near-flat outputs.** The three finished arm-A variants:
 
 | Variant (@280) | C1 argmax ρ₄ (max over probes) | soft ρ₄ (PPNG) | C1 |
@@ -304,7 +316,9 @@ simulation of camera-like rendering (2× parents plus downscale), not a camera r
 
 The benchmark: 1,030 COCO val2014 photos, each rotated to a random angle under five test seeds and cropped to the
 largest axis-aligned rectangle inside the rotated photo; within-10 is reported as the five-seed mean. We rebuilt the
-views with the upstream code (all 5,150 views match our pixel hashes) and ran W's public checkpoint.
+views with the upstream code (all 5,150 views match our pixel hashes) and ran W's public checkpoint. W has 83M
+parameters and was trained on COCO 2017 (about 118k training images); Max has 306M and was trained on about 1.24 million images, and the ViT-S/14
+tiers have 23M each (§2, §3).
 
 - **Seeds.** W's paper reports the five-seed mean, 98.0% (1009.8 / 1030). Our earlier documents quoted 98.6% (1016),
   which is seed 0 of our rebuild and the best of W's five seeds there. That was our choice of figure, not the paper's.
@@ -331,6 +345,7 @@ views with the upstream code (all 5,150 views match our pixel hashes) and ran W'
   the crop and the rendering are common in RotNet-style code. A script that rebuilds every view and runs W's public
   checkpoint (`benchmarks/woehrer-2026/reproduce_w_jpeg.py`) reproduces the numbers above (5,150 / 5,150 views pixel-identical, JPEG five-seed mean 311.2 with the
   checkpoint vs 311.0 with the ONNX export).
+- Response from the author of Woehrer 2026, quoted verbatim: [`benchmarks/woehrer-2026/BENCHMARK-NOTES.md`](benchmarks/woehrer-2026/BENCHMARK-NOTES.md#response-from-the-author-of-woehrer-2026).
 
 ## 6. Evaluation protocol
 
@@ -429,6 +444,10 @@ share (Balanced / Pro): COCO 11% / 32%, max-area 10% / 30%, COCO degraded 13% / 
 Images degraded 33% / 55%, R-LiViT RGB 15% / 58%, R-LiViT thermal 31% / 80%, Aalborg 26% / 55%. Pico is not part of
 this evaluation.
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max and Fast were
+trained on about 1.24 million images, Nano on 705,075.
+
 ### 7.2 Held-out CCTV and scene sets (A9, 30 Sep 2026)
 
 | Slice (views) | W | Deep-OAD | GeoCalib | Pico | Nano | Fast | Balanced | Pro | Max |
@@ -443,6 +462,10 @@ this evaluation.
 
 Max − W: +95 views [+77, +113] of 380 and +806 [+754, +858] of 2,854; Max − Deep-OAD: +67 [+52, +82] and +459
 [+413, +506]. The superseded 24 Sep Max scored 98.7% (375 / 380) on the same four cameras and 98.5% on the clean test.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ### 7.3 Development panels
 
@@ -460,6 +483,10 @@ Max − W: +95 views [+77, +113] of 380 and +806 [+754, +858] of 2,854; Max − 
 | Open Images photos, old panel (3,345) | 81.6% | 91.2% | 90.8% | 89.3% | 83.9% | 74.7% | 68.8% |
 
 The seed-0 row is shown only because it was quoted before; compare the five-seed mean.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ### 7.4 Abstention
 
@@ -513,6 +540,10 @@ same architecture).
 Max and Pro are correct on every RotBench image in the 4-way sense (within 10°: 100.0% on Small; 98.9% and 98.8% on
 Large). On RotBench-Small this is above the published human baseline (0.99 / 0.99 / 0.99 / 0.97), by 1–3 points on 50 photos. The
 superseded 24 Sep Max scored 1.00 / 1.00 / 0.98 / 1.00 on Small.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ## 8. Pico: the sixth tier and its rotation-corner fix
 
@@ -604,6 +635,8 @@ FP32. The sealed holdout was scored with the PyTorch checkpoints and the FP32 th
 - **Thermal.** Unseen thermal cameras vary widely (sealed: R-LiViT thermal Max 95.9%, Aalborg Max 83.3%, Nano 48.7%)
   and abstention is not reliable there.
 - **Small tiers on clean photos.** Nano and Fast trail W on clean COCO photos; Nano also on clean Open Images photos.
+  Nano and Fast have 23M parameters each and were trained on 705,075 and about 1.24 million images; W has 83M and
+  was trained on COCO 2017 (about 118k training images).
 - **Pico** has development numbers only and is weak on strongly rolled CCTV (41.1% on held-out camera G329).
 - **Rotation corners.** A sky-blue corner fill can flip Nano by 180° (it reads as sky); black, white and grey corners
   pass the package tests for every tier; corners still cost every tier 2–5 pp on the development corner panel.

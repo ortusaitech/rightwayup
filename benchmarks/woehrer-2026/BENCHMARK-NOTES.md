@@ -1,11 +1,13 @@
 # Benchmark notes: crop shape, JPEG grid and seeds
 
-We compare RightWayUp with Woehrer 2026 (MambaOut-base with a 360-bin circular Gaussian loss, arXiv:2603.25351,
-code and weights under MIT, github.com/maxwoe/image-rotation-angle-estimation). It is the published state of the
+We compare RightWayUp with Woehrer 2026 (MambaOut-base with a 360-bin circular Gaussian loss, by Maximilian Woehrer,
+[arXiv:2603.25351](https://arxiv.org/abs/2603.25351), code and weights under MIT,
+[github.com/maxwoe/image-rotation-angle-estimation](https://github.com/maxwoe/image-rotation-angle-estimation)). It is the published state of the
 art on the COCO rotation benchmark: 1,030 COCO val2014 photos (Fischer et al. 2015, classes 1 and 2), each rotated
 to a random angle under five test seeds, scored as the share of views within 10° of the truth.
 
-On that benchmark as published, our released Max tier scores 98.8% and Woehrer 2026 98.0% (five-seed means). While
+On that benchmark as published, our released Max tier scores 98.8% and Woehrer 2026 98.0% (five-seed means). Max has
+306M parameters and was trained on about 1.24 million images; Woehrer 2026 has 83M and was trained on COCO 2017 (about 118k training images). While
 building RightWayUp we looked closely at how the benchmark is built and found three properties that matter when its
 numbers are read as a guide to real cameras. None of them is a flaw of one paper: the crop and the rendering are
 common in RotNet-style code, and the seed point is about how we had been quoting the result. The author made all of
@@ -22,6 +24,9 @@ photos that reappear in COCO train2017.
 | As published, each view saved once as JPEG q90, five-seed mean | 30.2% (311.0) | **98.4%** (1013.4) |
 | Neutral crop, saved once as JPEG q90 | 32.7% (337) | not scored |
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M (ViT-L/14)
+and was trained on about 1.24 million images.
+
 1. **Seeds.** The paper reports the mean over five test seeds. We had been quoting seed 0 of our rebuild, which is
    Woehrer 2026's best of the five. The per-seed scores also depend on the order in which the test files are
    listed, so only the five-seed mean is portable between machines.
@@ -36,6 +41,16 @@ photos that reappear in COCO train2017.
 On the benchmark as published, Max leads by 0.8 points. On the neutral crop and on the JPEG copies, the gap widens.
 The crop and the JPEG grid remain properties of the protocol, whichever model leads on it.
 
+## Response from the author of Woehrer 2026
+
+> The accuracy loss that ORTUS AI measured after recompression is real, and its main cause is a training artefact. When models are trained on digitally rotated JPEG photographs that are kept lossless after rotation, the source block grid rotates with the image and carries information about the angle. My models trained on COCO learned to exploit this cue, which I confirmed using content-free textures and cue-conflict experiments; the models trained on the much smaller DRC-D dataset did not.
+>
+> Re-encoding every training view after rotation removes the exploitable cue, and models trained this way follow the image content rather than a conflicting grid, at a modest cost in accuracy. An updated version of the paper will report the finding and results under both the original and corrected protocols, with the code and results published alongside it.
+>
+> I thank ORTUS AI for identifying the issue and for providing the materials that made a careful reproduction possible.
+
+Maximilian Woehrer, 6 October 2026 (shared for publication verbatim)
+
 ## 1. Setup
 
 - **Views.** Our rebuild uses the upstream `rotation_utils.py` at commit `e4e35610` (cv2 bilinear rotation with an
@@ -43,15 +58,17 @@ The crop and the JPEG grid remain properties of the protocol, whichever model le
   `numpy.random.seed(seed); uniform(0, 360, 1030)` for seeds 0 to 4. All 5,150 views match the pixel hashes of our
   earlier independent rebuild (opencv-python-headless 4.12.0.88, numpy 2.1.2, Pillow 11.0.0). The views are stored
   as PNG, so they are lossless like the upstream in-memory pipeline.
-- **Woehrer 2026.** The public checkpoint `cgd_mambaout_base_coco2017.ckpt` (Hugging Face `maxwoe/image-rotation-angle-estimation`),
+- **Woehrer 2026.** The public checkpoint `cgd_mambaout_base_coco2017.ckpt` (Hugging Face `maxwoe/image-rotation-angle-estimation`;
+  83M parameters, trained on COCO 2017, about 118k training images),
   exported to ONNX FP32 and run on CPU with ONNX Runtime. Preprocessing is the upstream eval transform (timm:
   shortest side to 224, bicubic, centre crop 224, ImageNet normalisation), decoding is argmax over 360 bins. The ONNX
   export and the checkpoint run directly in PyTorch (the reproduction script in section 7) give the same prediction
   on 10,298 of the 10,300 clean and JPEG views; one seed-3 view differs by 1°, which moves seed 3 of the JPEG copy
   from 308 to 309 (five-seed JPEG mean 311.0 with ONNX, 311.2 with the checkpoint).
-- **RightWayUp.** The six released tiers (`FREEZE.md`): Max is the DINOv2 ViT-L/14 at 280 px on every image; Pro and
+- **RightWayUp.** The six released tiers (`FREEZE.md`): Max is the DINOv2 ViT-L/14 (306M parameters) at 280 px on every image; Pro and
   Balanced are Fast → Max cascades that send about 20% and 10% of images to Max (calibration share); Fast is a
-  ViT-S/14 at 224 px, Nano a ViT-S/14 at 112 px, and Pico is Nano fine-tuned to 70 px. Scores are PyTorch scores of
+  ViT-S/14 at 224 px, Nano a ViT-S/14 at 112 px, and Pico is Nano fine-tuned to 70 px (23M parameters each). Max,
+  Fast and Pico were trained on about 1.24 million images, Nano on 705,075. Scores are PyTorch scores of
   the release weights; the release FP32 ONNX files give the same predictions.
 - **Metric.** Within 10° of the truth, circular error. Paired intervals are 95% bootstrap intervals over source
   photos (all seeds of a photo resampled together).
@@ -66,6 +83,10 @@ The crop and the JPEG grid remain properties of the protocol, whichever model le
 
 On the benchmark as published, Max and Pro score above Woehrer 2026 and the smaller tiers below it. Every tier loses
 less than half a point on the JPEG copies.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). Max has 306M (ViT-L/14);
+Pico, Nano and Fast have 23M each (ViT-S/14); Balanced and Pro run Fast, then Max on part of the images. Max, Fast and
+Pico were trained on about 1.24 million images, Nano on 705,075.
 
 ## 2. Seeds
 
@@ -85,6 +106,9 @@ less than half a point on the JPEG copies.
   accuracy by up to about one point.
 - Paired over all 5,150 views, Max minus Woehrer 2026 is +41 views [8, 76].
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M (ViT-L/14)
+and was trained on about 1.24 million images.
+
 ## 3. JPEG grid
 
 ### 3.1 Five seeds, JPEG q90
@@ -98,6 +122,9 @@ crop, and decoded again. Nothing else changed.
 | RightWayUp Max | 1018.0 (98.8%) | 1013.4 (98.4%) | 1016 / 1018 / 1015 / 1012 / 1006 |
 
 The other tiers are in the table in section 1.
+
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M (ViT-L/14)
+and was trained on about 1.24 million images.
 
 ### 3.2 What the errors look like (five seeds, 5,150 views)
 
@@ -176,6 +203,9 @@ is tested on.
   one that is. These photos were
   stored at 448 px as JPEG q92 before rotation, so they are not a faithful replica of the benchmark rendering.
 
+*Model size and training data:* Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images); Max has 306M (ViT-L/14)
+and was trained on about 1.24 million images.
+
 We do not claim that the crop explains a specific number of views: for Woehrer 2026 the effect is not statistically
 established. It is a train/test coupling that a rolled camera never provides, so we report the benchmark both ways.
 
@@ -195,7 +225,8 @@ established. It is a train/test coupling that a rolled camera never provides, so
   time did not beat Woehrer 2026 (76.0% vs 77.6%). So we retrained every released tier on grid-free data (training
   images stored losslessly, never JPEG-encoded before rotation), and every shipped file passes a check for these
   cues on content-free probe images in its own runtime. On the same camera-like photos the released Max scores 83.6%
-  against 77.6% (a development test). We mention this because it is the same kind of shortcut: it comes from how
+  against 77.6% (a development test; Max has 306M parameters and was trained on about 1.24 million images,
+  Woehrer 2026 83M on COCO 2017, about 118k training images). We mention this because it is the same kind of shortcut: it comes from how
   rotation data is usually rendered, not from one team's choices.
 
 ## 6. Limitations

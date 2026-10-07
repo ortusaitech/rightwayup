@@ -32,6 +32,12 @@ Backbones (Apache-2.0, Meta DINOv2 without registers, from the Hugging Face Hub 
   left out of the pool.
 - Loss: cross-entropy against a circular Gaussian soft target, σ = 6°; knowledge distillation (α 0.5, T 1) from a
   teacher that sees the **clean, cue-free** view of the same sample.
+- RightWayUp's output head (360 one-degree bins trained against a circular Gaussian soft target, σ = 6°) follows the
+  CGD formulation of Woehrer (2026, [arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+  [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence), whose comparison of circular-aware
+  methods and released model (our earlier production model and comparator) guided this choice; the circular Gaussian
+  target originates with Xu et al. (2023, Electronics 12(15):3265). Our implementation, backbone and training are our
+  own.
 - Each view gets a fresh uniform random angle in [0, 360); target = base roll + applied angle (clockwise). Crops are
   angle-independent; **no max-area crop** (`--maxarea-p 0`).
 - **Scrub renderer** (`rotlab/scrub.py`, `--scrub key=value,…`), used by every stage of the release:

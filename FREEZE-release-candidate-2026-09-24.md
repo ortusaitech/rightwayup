@@ -2,6 +2,10 @@
 
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). The record itself is unchanged.
+
 **Frozen 24 Sep 2026, 15:30 Sydney time (05:30 UTC), before the protected final evaluation was opened.**
 No weights, tier settings or thresholds change after this point. If anything must change, the protected results below
 are void and a new protected set is needed.

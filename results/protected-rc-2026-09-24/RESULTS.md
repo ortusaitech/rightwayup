@@ -3,6 +3,13 @@
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). Model size and training data, for
+> every comparison in this record: Woehrer 2026 has 83M parameters and was trained on COCO 2017 (about 118k training images). The release
+> candidate's small model (Nano, Fast and the first stage of Balanced and Max) has 23M parameters (ViT-S/14) and its
+> large model 306M (ViT-L/14); they were trained on 664,340 images. The results are unchanged.
+
 > **Strict mode, 25 Sep 2026.** `strict` uses the higher of the two frozen thresholds, so it never answers more
 > than `standard`. On Balanced and Max the calibrated strict threshold (0.750, 0.677) was below the standard one
 > (0.778, 0.808): the standard point already met the ≤1%-wrong target on calibration data. Their strict rows

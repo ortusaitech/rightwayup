@@ -4,7 +4,7 @@ Release method (rotlab/bench.py, random inputs, p50). **Single** = one image (ba
 throughput at the stated batch. Balanced / Pro are **derived** from Fast and Max at the calibration route shares
 (10% / 20%). Rows marked † are on the published scale of the 24 Sep release candidate: today's measurement multiplied by
 published / same-session value of the release candidate's file of the same architecture (its Nano / Fast /
-Large@224) measured alongside; unmarked rows are devices new in the release, as measured. Woehrer 2026 runs in ONNX Runtime CUDA FP32 (fixed batch 1) and in FP32 on CPUs.
+Large@224) measured alongside; unmarked rows are devices new in the release, as measured. Woehrer 2026 (MambaOut-base CGD by Maximilian Woehrer, [arXiv:2603.25351](https://arxiv.org/abs/2603.25351), [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence) runs in ONNX Runtime CUDA FP32 (fixed batch 1) and in FP32 on CPUs.
 Pico rows were measured with the PICO-N70L files. The shipped Pico (PICO-N70S80, 30 Sep; `FREEZE.md`) has the
 structurally identical ONNX graph in all eight formats (only the weights differ); re-measured on Apple M4 Core ML:
 0.86 ms batch 1, as N70L.

@@ -72,7 +72,7 @@ Counts are those of the training runs of the released models, 30 Sep 2026.
 | Held-out CCTV and scenes (24 Sep sets, re-used once for the release) | MEVA test set, frozen split (6 cameras incl. thermal G474); clean scene test (DIODE scene 12, MEVA G339, Poly Haven renders) | CC BY 4.0 / MIT / CC0 assets |
 | MEVA test set, development split | 7 further MEVA cameras incl. thermal G479 | CC BY 4.0 |
 | Fresh DIODE | DIODE validation scenes 19–24 | MIT |
-| Woehrer 2026 benchmark and fair photos | 1,030 COCO 2014 val photos, five-seed protocol and a neutral-crop version | Flickr licences per image; pixels not redistributed |
+| Woehrer 2026 (MambaOut-base CGD by Maximilian Woehrer, [arXiv:2603.25351](https://arxiv.org/abs/2603.25351), [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence) benchmark and fair photos | 1,030 COCO 2014 val photos, five-seed protocol and a neutral-crop version | Flickr licences per image; pixels not redistributed |
 | Cue-free realistic photos | 1,856 Open Images validation development photos re-rendered from 2× originals | CC BY 2.0 (per image) |
 | Open Images photo test (older panel) | Open Images validation ranks 0–3999 (3,345 eligible) | CC BY 2.0 / CC BY 4.0 |
 | Calibration (thresholds only) | MEVA G419, G299, G330; Poly Haven calibration split; Open Images validation ranks 4000–7999 | CC BY 4.0 / CC0 / CC BY 2.0 |

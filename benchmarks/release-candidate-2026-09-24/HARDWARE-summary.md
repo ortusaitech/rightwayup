@@ -3,6 +3,10 @@
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). The record itself is unchanged.
+
 **Single** = latency of one image processed on its own (batch 1, p50), what a per-camera or interactive check sees.
 **Batched** = sustained throughput when many images are processed together (batch size in brackets). Batching amortises
 fixed per-call overhead and fills the GPU, so throughput is far higher than 1000 / single-image latency.

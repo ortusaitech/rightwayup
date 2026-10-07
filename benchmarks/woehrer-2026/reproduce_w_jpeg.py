@@ -37,8 +37,10 @@ Examples
 Angle conventions: the upstream harness rotates content counter-clockwise by the truth angle (cv2 convention) and
 the model predicts that angle; error = circular |prediction - truth|. In --protocol fair the view is rendered with a
 clockwise rotation th, so truth = (-th) mod 360 in the model's convention.
-Script by ORTUS AI (Apache-2.0). The functions marked "upstream" are from maxwoe/image-rotation-angle-estimation
-@ e4e35610, Copyright (c) 2026 Maximilian Woehrer, MAXI solutions e.U., MIT License.
+Script by ORTUS AI (Apache-2.0). The functions marked "upstream" are adapted from rotation_utils.py of
+maxwoe/image-rotation-angle-estimation (https://github.com/maxwoe/image-rotation-angle-estimation, commit
+e4e35610775fbb08f3f27641e8027d14b1498395), Copyright (c) 2026 Maximilian Woehrer, MAXI solutions e.U., used under
+the MIT License; the full licence text is in the NOTICE file of the RightWayUp repository.
 """
 import argparse, hashlib, io, json, math, os, platform, random, sys, time, urllib.request
 from pathlib import Path

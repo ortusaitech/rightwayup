@@ -56,6 +56,9 @@ def max_rect(w, h, applied_cw, aspect):
     return aspect * hh, hh
 
 
+# Adapted from rotation_utils.largest_rotated_rect in maxwoe/image-rotation-angle-estimation
+# (https://github.com/maxwoe/image-rotation-angle-estimation, commit e4e35610775fbb08f3f27641e8027d14b1498395),
+# Copyright (c) 2026 Maximilian Woehrer, MAXI solutions e.U., used under the MIT License (full text in NOTICE).
 def largest_rotated_rect(w, h, applied_cw):
     """Maximal-AREA axis-aligned rect inside a w x h source rotated by applied_cw degrees (free aspect).
     Same formula as the incumbent's rotation_utils.largest_rotated_rect, i.e. its training AND benchmark crop."""

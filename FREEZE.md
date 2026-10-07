@@ -2,6 +2,10 @@
 
 > Terminology note (added 30 Sep 2026): in this record, 'v2' denotes the RightWayUp 1.0 release weights and 'v1' the 24 Sep release candidate; the record itself is unchanged.
 
+> Reference note (added 7 Oct 2026): Woehrer 2026 is MambaOut-base CGD by Maximilian Woehrer
+> ([arXiv:2603.25351](https://arxiv.org/abs/2603.25351),
+> [code](https://github.com/maxwoe/image-rotation-angle-estimation), MIT licence). The record itself is unchanged.
+
 **Frozen 29 Sep 2026, 11:19 Sydney time (01:19 UTC), before the sealed final holdout was opened.**
 Owner go-ahead in chat at about 10:50 Sydney time ("We are now ready to freeze"). No weights, tier settings or
 thresholds change after this point. If anything must change, the sealed final results are void.
